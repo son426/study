@@ -19,6 +19,10 @@
   color: #2e363e;
 }
 
+.nav__link i {
+  font-size: 25px;
+}
+
 @keyframes notificationAnimation {
   0% {
     transform: none;
@@ -33,8 +37,8 @@
 
 .nav__notification {
   position: absolute;
-  left: 18px;
-  bottom: 15px;
+  left: 15px;
+  bottom: 12px;
   animation: notificationAnimation 1s ease-in-out infinite;
 }
 
@@ -46,7 +50,7 @@
 
   position: absolute;
   right: -5px;
-  bottom: 30px;
+  bottom: 25px;
 }
 
 @keyframes appearBtnAnimation {
