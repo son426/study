@@ -23,7 +23,7 @@
 
 .user-component__text h6 {
   margin-top: 5px;
-  font-size: 20px;
+  font-size: 14px;
   color: rgba(0, 0, 0, 0.4);
 }
 
@@ -35,10 +35,10 @@
 }
 
 .user-component__column:last-child span {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.4);
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }
 
 .user-component__img-sm {
