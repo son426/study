@@ -1,0 +1,55 @@
+.bg_modal-show {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 5px;
+  padding: 25px;
+  width: 70vw;
+  left: 50%;
+}
+
+.modal-row {
+  display: flex;
+}
+
+.title {
+  justify-content: space-between;
+}
+
+.text {
+  margin: 20px 0px;
+  padding: 20px 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.buttons {
+  justify-content: flex-end;
+}
+
+.buttons button {
+  margin-left: 10px;
+  padding: 10px;
+  border: none;
+  font-weight: 600;
+}
+
+.buttons button:last-child {
+  color: white;
+  background-color: dodgerblue;
+}
