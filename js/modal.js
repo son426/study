@@ -6,6 +6,7 @@ const HIDE_KEY = "hide";
 
 function modalPop() {
   modal.classList.remove(HIDE_KEY);
+  console.log("!");
 }
 
 function modalClose() {

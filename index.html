@@ -4,14 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
     <title>Study</title>
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.min.js"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"
-    ></script>
   </head>
 
   <body class="bg_modal-show">
@@ -31,25 +26,42 @@
       </div>
     </div>
 
-    <script src="app.js"></script>
+    <div id="greeting" class="hide"></div>
+    <form id="username" class="hide">
+      <input required maxlength="15" type="text" placeholder="아이디 입력" />
+      <button>입력</button>
+    </form>
 
-    <!-- <script>
-      // document.querySelector(".hello").innerHTML = "바보";
-      $(".hello").html("바보");
+    <div class="clock"></div>
 
-      document.querySelector(".list-group");
+    <div class="quotes">
+      <span class="quote"></span>
+      <span class="author"></span>
+    </div>
 
-      document
-        .querySelector(".navbar-toggler")
-        .addEventListener("click", function () {
-          document.querySelectorAll(".list-group")[0].classList.toggle("show");
-        });
-    </script> -->
+    <div>
+      <form class="todo">
+        <input type="todo list" />
+        <button>입력</button>
+      </form>
+      <ul class="todo-list"></ul>
+    </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
+    <div class="game-rsp">
+      <span class="rock hide">✊</span>
+      <span class="scissors hide">✌️</span>
+      <span class="paper hide">🖐</span>
+
+      <button class="stop-button scissors-button">가위</button>
+      <button class="stop-button rock-button">바위</button>
+      <button class="stop-button paper-button">보</button>
+    </div>
+
+    <script src="js/modal.js"></script>
+    <script src="js/greeting.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/quotes.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/game1.js"></script>
   </body>
 </html>
