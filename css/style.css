@@ -2,6 +2,19 @@
   display: block;
 }
 
+.rock,
+.scissors,
+.paper {
+  font-size: 100px;
+}
+
+.game-rsp {
+  width: 50vw;
+  text-align: center;
+  padding: 30px;
+  border: 5px solid dodgerblue;
+}
+
 .computer {
 }
 
@@ -15,16 +28,23 @@
 }
 
 .modal {
+  text-align: center;
   background-color: white;
   border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 3px solid rgba(0, 0, 0, 0.2);
   padding: 25px;
-  width: 70vw;
+  width: 50vw;
   left: 50%;
+  font-size: 40px;
+}
+
+.rsp-computer,
+.rsp-user {
+  font-size: 20px;
 }
 
 .modal-row {
-  display: flex;
+  padding: 20px;
 }
 
 .title {
@@ -38,15 +58,21 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.buttons {
-  justify-content: flex-end;
-}
-
 .buttons button {
   margin-left: 10px;
   padding: 10px;
   border: none;
   font-weight: 600;
+}
+
+.stop-button {
+  background: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  margin-top: 50px;
 }
 
 .buttons button:last-child {

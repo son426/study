@@ -1,4 +1,4 @@
-const modalBtn = document.querySelector(".modal-button");
+const modalBtn = document.querySelectorAll(".modal-button");
 const modal = document.querySelector(".modal");
 const modalOut = document.querySelector("#modal-close");
 
@@ -11,7 +11,10 @@ function modalPop() {
 
 function modalClose() {
   modal.classList.add(HIDE_KEY);
+  interval = setInterval(showNext, 100);
 }
 
-modalBtn.addEventListener("click", modalPop);
+modalBtn.forEach((modalBtn) => {
+  modalBtn.addEventListener("click", modalPop);
+});
 modalOut.addEventListener("click", modalClose);
