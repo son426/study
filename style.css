@@ -42,3 +42,31 @@
 .hide {
   display: none;
 }
+
+.pic-container {
+  width: 300vw;
+  display: flex;
+  transition: all 1s;
+}
+
+.pic {
+  width: 100vw;
+}
+
+.pic-button {
+  position: relatve;
+  width: 100vw;
+  height: 500px;
+  display: flex;
+  align-items: center;
+}
+
+.pic-next {
+  position: absolute;
+  right: 100px;
+}
+
+.pic-prev {
+  position: absolute;
+  left: 100px;
+}
