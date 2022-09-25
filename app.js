@@ -188,3 +188,6 @@ window.addEventListener("scroll", function () {
     ".scroll-check"
   ).innerText = `스크롤양 : ${스크롤퍼센트}%`;
 });
+
+// detail.html
+// 탭기능
