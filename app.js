@@ -156,3 +156,35 @@ document.querySelectorAll(".pic-num")[2].addEventListener("click", function () {
   ).style.transform = `translateX(-200vw)`;
   indexNum = 3;
 });
+
+// 페이지 스크롤
+// div 스크롤
+window.addEventListener("scroll", function () {
+  document.querySelector(".scroll-check").classList.remove("disabled");
+  if (window.scrollY == 0) {
+    document.querySelector(".scroll-check").classList.add("disabled");
+  }
+});
+
+document.querySelector(".lorem").addEventListener("scroll", function () {
+  let 스크롤양 = document.querySelector(".lorem").scrollTop;
+  let 실제높이 = document.querySelector(".lorem").scrollHeight;
+  let 높이 = document.querySelector(".lorem").clientHeight;
+  console.log(스크롤양);
+  console.dir(document.querySelector(".lorem"));
+
+  if (스크롤양 + 높이 > 실제높이 - 10) {
+    alert("읽기 완료 !!!");
+  }
+});
+
+window.addEventListener("scroll", function () {
+  let 페이지스크롤 = document.querySelector("html").scrollTop;
+  let 페이지높이 = document.querySelector("html").scrollHeight;
+  let 지금높이 = document.querySelector("html").clientHeight;
+  let 스크롤퍼센트 = (페이지스크롤 / (페이지높이 - 지금높이)).toFixed(2) * 100;
+
+  document.querySelector(
+    ".scroll-check"
+  ).innerText = `스크롤양 : ${스크롤퍼센트}%`;
+});

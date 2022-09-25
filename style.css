@@ -45,28 +45,67 @@
 
 .pic-container {
   width: 300vw;
+  height: 500px;
   display: flex;
   transition: all 1s;
 }
 
 .pic {
   width: 100vw;
+  height: 500px;
 }
 
-.pic-button {
-  position: relatve;
+.pic img {
   width: 100vw;
   height: 500px;
-  display: flex;
-  align-items: center;
+}
+
+.big-wrap {
+  position: relative;
 }
 
 .pic-next {
   position: absolute;
+  top: 250px;
   right: 100px;
+
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  font-size: 25px;
+  font-weight: 600;
+  color: dodgerblue;
 }
 
 .pic-prev {
   position: absolute;
+  top: 250px;
   left: 100px;
+
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  font-size: 25px;
+  font-weight: 600;
+  color: dodgerblue;
+}
+
+.pic-num-container {
+  position: absolute;
+  bottom: 50px;
+  left: 50vw;
+}
+
+.pic-num {
+  background: dodgerblue;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.wrap {
+  width: 100%;
+  position: fixed;
+  z-index: 999;
 }
