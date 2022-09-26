@@ -90,21 +90,46 @@ document.querySelector("#send-answer").addEventListener("click", function () {
   }
 });
 
+document
+  .querySelector(".quiz-hint-button")
+  .addEventListener("click", function () {
+    if (document.querySelector(".quiz-hint").style.display === "none") {
+      document.querySelector(".quiz-hint").style.display = "block";
+    } else {
+      document.querySelector(".quiz-hint").style.display = "none";
+    }
+  });
+
 // 타이머
 // 1초마다 숫자 줄어드는 알람문구
 
 const alertTimer = document.querySelector(".alert-danger");
 let time = 0;
 
-var interval = setInterval(function () {
-  time++;
-  alertTimer.innerText = `${5 - time}초 이내 구매시 사은품 증정!`;
-}, 1000);
+// var interval = setInterval(function () {
+//   time++;
+//   alertTimer.innerText = `${5 - time}초 이내 구매시 사은품 증정!`;
+// }, 1000);
 
-setTimeout(function () {
-  alertTimer.classList.add("hide");
-  clearInterval(interval);
-}, 5000);
+// setTimeout(function () {
+//   alertTimer.classList.add("hide");
+//   clearInterval(interval);
+// }, 5000);
+
+function 마감(setTime) {
+  alertTimer.innerText = `${setTime - time}초 이내 구매시 사은품 증정!`;
+  var interval = setInterval(function () {
+    time++;
+    alertTimer.innerText = `${setTime - time}초 이내 구매시 사은품 증정!`;
+  }, 1000);
+
+  setTimeout(function () {
+    alertTimer.classList.add("hide");
+    clearInterval(interval);
+  }, setTime * 1000);
+}
+
+마감(7);
 
 //캐러셀
 
@@ -189,5 +214,11 @@ window.addEventListener("scroll", function () {
   ).innerText = `스크롤양 : ${스크롤퍼센트}%`;
 });
 
-// detail.html
-// 탭기능
+// 이벤트 버블링
+
+document.querySelector(".black-bg").addEventListener("click", function (e) {
+  if (e.target == document.querySelector(".black-bg")) {
+    document.querySelector(".black-bg").classList.remove("show-modal");
+  }
+  console.log(e.currentTarget);
+});

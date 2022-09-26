@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- saved from url=(0113)file:///C:/Users/%EC%86%90%EC%B1%84%ED%99%98/Desktop/%EA%B0%9C%EB%B0%9C(%EB%A1%9C%EC%BB%AC)/codingApple/list.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <link href="./List_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./List_files/list.css">
+  </head>
+
+  <body><div class="card-group container">
+    <div class="card">
+      <img src="./List_files/600">
+      <div class="card-body">
+        <h5>Blossom Dress</h5>
+        <p>가격 : 70000</p>
+        <button class="btn btn-danger">주문하기</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./List_files/600">
+      <div class="card-body">
+        <h5>Springfield Shirt</h5>
+        <p>가격 : 50000</p>
+        <button class="btn btn-danger">주문하기</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./List_files/600">
+      <div class="card-body">
+        <h5>Black Monastery</h5>
+        <p>가격 : 60000</p>
+        <button class="btn btn-danger">주문하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- select -->
+  <form class="container my-5 form-group">
+    <p>상품선택</p>
+    <select class="form-select mt-2">
+      <option>모자</option>
+      <option>셔츠</option>
+      <option>바지</option>
+    </select>
+    <select class="form-select shirt-size"><option>28</option><option>30</option></select>
+  </form>
+
+  <div></div>
+
+  <script>
+    var products = [
+      { id: 0, price: 70000, title: "Blossom Dress" },
+      { id: 1, price: 50000, title: "Springfield Shirt" },
+      { id: 2, price: 60000, title: "Black Monastery" },
+    ];
+
+    const priceVar = document.querySelectorAll(".card-body p");
+    const titleVar = document.querySelectorAll(".card-body h5");
+
+    for (let i = 0; i < 3; i++) {
+      priceVar[i].innerText = `가격 : ${products[i]["price"]}`;
+      titleVar[i].innerText = `${products[i]["title"]}`;
+    }
+
+    // select
+
+    document
+      .querySelectorAll(".form-select")[0]
+      .addEventListener("input", function () {
+        if (document.querySelectorAll(".form-select")[0].value === "셔츠") {
+          document
+            .querySelectorAll(".form-select")[1]
+            .classList.remove("form-hide");
+          document.querySelectorAll(".form-select")[1].innerHTML = "";
+          var a = "<option>95</option><option>100</option>";
+          document.querySelectorAll(".form-select")[1].innerHTML = a;
+        } else if (
+          document.querySelectorAll(".form-select")[0].value === "모자"
+        ) {
+          document
+            .querySelectorAll(".form-select")[1]
+            .classList.add("form-hide");
+        } else if (
+          document.querySelectorAll(".form-select")[0].value === "바지"
+        ) {
+          document
+            .querySelectorAll(".form-select")[1]
+            .classList.remove("form-hide");
+          document.querySelectorAll(".form-select")[1].innerHTML = "";
+          var a = "<option>28</option><option>30</option>";
+          document
+            .querySelectorAll(".form-select")[1]
+            .insertAdjacentHTML("beforeend", a);
+        }
+      });
+  </script>
+  
+    <script src="./List_files/bootstrap.bundle.min.js.다운로드" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  
+
+</body></html>

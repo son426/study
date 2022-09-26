@@ -46,7 +46,6 @@
     <div class="black-bg">
       <div class="white-bg">
         <h4>로그인하세요</h4>
-
         <form action="success.html">
           <div class="my-3">
             <input type="text" class="form-control" id="input-id" />
@@ -70,7 +69,13 @@
     </ul>
 
     <div id="quiz">
-      <p>태조 이성계가 태어난 년도는?</p>
+      <div class="quiz-wrap">
+        <p>태조 이성계가 태어난 년도는?</p>
+        <button class="quiz-hint-button">힌트</button>
+      </div>
+      <div class="quiz-hint">
+        <span>1335년입니다.</span>
+      </div>
       <input type="text" id="answer" />
       <button id="send-answer">제출</button>
     </div>
