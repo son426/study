@@ -1,3 +1,23 @@
 .form-hide {
   display: none;
 }
+
+.hide {
+  display: none;
+}
+
+#seeMore-container {
+  margin: 85px;
+  padding: 12px;
+  text-align: center;
+}
+
+#seeMore {
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: tomato;
+  font-size: 20px;
+  font-weight: 600;
+}
