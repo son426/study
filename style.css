@@ -12,6 +12,10 @@ main {
   top: 80px;
 }
 
+.hide {
+  display: none;
+}
+
 .tap-bar {
   position: fixed;
   top: 0;
@@ -67,6 +71,7 @@ main {
   flex-direction: column;
   align-items: baseline;
   padding: var(--padding);
+  color: black;
 }
 
 .item-pick {
@@ -96,4 +101,23 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.black-bg {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.white-bg {
+  width: 50%;
+  height: 30%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.modal-row {
+  margin-bottom: 20px;
 }
