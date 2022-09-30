@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index2</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="tap-bar">
+        <h2>집꾸미기</h2>
+        <span>Home</span>
+        <span>스토어</span>
+        <span>시공견적</span>
+        <h2 id="tap-name">반갑습니다.</h2>
+      </div>
+    </header>
+
+    <main>
+      <input class="item-search" type="text" placeholder="검색어 입력" />
+
+      <div class="item-container"></div>
+
+      <div class="buy-list">
+        <span>장바구니</span>
+        <div class="drag-box-wrap" style="position: relative">
+          <div
+            class="drag-box"
+            style="
+              position: absolute;
+              display: flex;
+              justify-content: center;
+              width: 100%;
+            "
+          >
+            <span>여기로 드래그하세요.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-info-wrap">
+        <div class="item-info buy-info">
+          <h5>최종가격</h5>
+          <span>합계 : 0</span>
+        </div>
+        <div class="item-buy">
+          <button>구매하기</button>
+        </div>
+      </div>
+
+      <form class="buyer-form">
+        <div class="buy-modal black-bg modal-pop hide">
+          <div class="white-bg">
+            <div class="modal-row">
+              <span>성함</span>
+              <input type="text" class="buyer-name" />
+            </div>
+            <div class="modal-row">
+              <span>연락처</span>
+              <input type="text" class="buyer-number" />
+            </div>
+            <div class="modal-row modal-info">
+              <span></span>
+              <span>원입니다.</span>
+            </div>
+
+            <button>입력완료</button>
+            <button type="button" class="modal-close">닫기</button>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    <script src="app2.js"></script>
+  </body>
+</html>

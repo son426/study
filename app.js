@@ -70,8 +70,9 @@ function 전상품목록() {
         document.querySelector(".item-container").innerHTML = "";
 
         for (let i = 0; i < data.products.length; i++) {
+          // 검색어와 같은 놈 뽑기
           if (data.products[i].title.includes(search.value)) {
-            var a = `<div class="item-box" draggable="true">
+            var a = `<div class="item-box item-box_search" draggable="true">
             <img src="img/${data.products[i].photo}" />
             <div class="item-info">
               <h5>${data.products[i].title}</h5>
