@@ -172,6 +172,9 @@ container.addEventListener("drop", (e) => {
         </div>`;
       container.insertAdjacentHTML("beforeend", a);
 
+      // 화면 다 보이게 스크롤
+      window.scrollTo(0, 500);
+
       // 최종가격에 합산
       let price = parseInt(
         document.querySelector(".buy-info span").innerText.split(" : ")[1]
@@ -182,12 +185,52 @@ container.addEventListener("drop", (e) => {
   document.querySelector(".drag-box span").innerText = "";
 });
 
+// 구매버튼 누르면 뜨는 화면
 document
   .querySelector(".item-buy button")
   .addEventListener("click", function () {
+    document.querySelector(".buy-modal").classList.toggle("modal-pop");
     document.querySelector(".buy-modal").classList.toggle("hide");
     document.querySelector(".modal-info span:first-child").innerText =
       document.querySelector(".buy-info span").innerText;
-
-    console.log(document.querySelector(".buy-info span").innerText);
   });
+
+// 구매자 정보 local storage 저장
+
+document.querySelector(".buyer-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.querySelector(".buyer-name").value;
+  const number = document.querySelector(".buyer-number").value;
+  localStorage.setItem("name", name);
+  localStorage.setItem("number", number);
+
+  // 제출후에는, 입력칸 비워주기
+  document.querySelector(".buyer-name").value = "";
+  document.querySelector(".buyer-number").value = "";
+
+  // 모달창 없애주기
+  document.querySelector(".buy-modal").classList.toggle("hide");
+
+  // 탭바에 이름 새기기
+  document.querySelector("#tap-name").innerText = `${localStorage.getItem(
+    "name"
+  )}님 반갑습니다`;
+});
+
+// 탭바에 이름 새기기
+document.querySelector("#tap-name").innerText = `${localStorage.getItem(
+  "name"
+)}님 반갑습니다`;
+
+if (localStorage.getItem("name") === null) {
+  document.querySelector("#tap-name").innerText = "반갑습니다.";
+}
+
+// 모달창 닫을때
+const closeModal = document.querySelectorAll(".buy-modal button")[1];
+
+closeModal.addEventListener("click", function (e) {
+  e.preventDefault();
+  document.querySelector(".buy-modal").classList.toggle("hide");
+});
