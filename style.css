@@ -1,0 +1,59 @@
+/* 탭바 */
+
+.tap-bar {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+}
+
+.tap-bar div {
+  width: 33%;
+}
+
+.tap-bar div:first-child {
+  text-align: left;
+}
+
+.tap-bar div:nth-child(2) {
+  text-align: center;
+}
+
+.tap-bar div:last-child {
+  text-align: end;
+}
+
+/* 캐러셀 */
+
+.carousel {
+  display: flex;
+  width: 300%;
+  transition: all 1s;
+}
+
+.content1-text {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
+
+/* 아래페이지 */
+
+.download {
+  display: flex;
+}
+
+/* footer */
+.footer {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
