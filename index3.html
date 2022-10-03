@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style3.css" />
+  </head>
+  <body>
+    <div class="container">
+      <input id="search" placeholder="검색어입력" />
+    </div>
+
+    <div class="container">
+      <div class="row product-list">
+        <!-- <div class="col-md-3">
+          <img src="">
+          <h4>상품명 : </h4>
+          <p>가격 : </p>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="container basket-wrap" style="background: #e2e2e2">
+      <h4>장바구니 (드래그 가능)</h4>
+      <div class="row basket"></div>
+    </div>
+    <div class="container my-3">
+      <h4>최종가격</h4>
+      <p class="final-price"></p>
+      <button class="buy">구매하기</button>
+    </div>
+
+    <div class="modal1" style="display: none">
+      <div class="white-bg">
+        <h4>성함</h4>
+        <input type="text" id="name" />
+        <h4>연락처</h4>
+        <input type="text" id="phone" />
+        <button class="show-receipt">입력완료</button>
+        <div>
+          <button class="close">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal2" style="display: none">
+      <div class="white-bg">
+        <h4>영수증</h4>
+        <canvas id="canvas" width="350" height="350"></canvas>
+        <div>
+          <button class="close">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app3.js"></script>
+  </body>
+</html>
