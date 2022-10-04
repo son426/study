@@ -47,9 +47,10 @@ fetch("store.json")
         // 싹 지우고, cart array로 쭉 그려.
         document.querySelector(".basket").innerHTML = "";
         cart.forEach((a, i) => {
-          document.querySelector(".basket").insertAdjacentHTML(
-            "beforeend",
-            `
+          if (a.count != 0) {
+            document.querySelector(".basket").insertAdjacentHTML(
+              "beforeend",
+              `
                 <div class="col-md-3">
                   <div class="item" draggable="true" data-id="${a.id}">
                     <img src="img/${a.photo}">
@@ -60,45 +61,43 @@ fetch("store.json")
                     <br/><button class="minus" data-id="${a.id}">빼기</button>
                   </div>
                 </div>`
-          );
-        });
-
-        // 빼기
-        // 싹 지우고, cart array로 쭉 그려.
-        document.querySelectorAll(".minus").forEach((a, i) => {
-          a.addEventListener("click", function (e) {
-            // cart에서 갯수 뺴주고
-            e.preventDefault();
-            let productId = e.target.dataset.id;
-
-            let 몇번째 = cart.findIndex((a) => {
-              return a.id == productId;
-            });
-
-            cart[몇번째].count--;
-
-            // 다시 그려줘
-            // document.querySelector(".basket").innerHTML = "";
-            // document.querySelector(".basket").innerHTML = "";
-            cart.forEach(function (a, i) {
-              console.log(`${a.title} : ${a.count}`);
-              document.querySelector(".basket").insertAdjacentHTML(
-                "beforeend",
-                `
-                    <div class="col-md-3">
-                      <div class="item" draggable="true" data-id="${a.id}">
-                        <img src="img/${a.photo}">
-                        <h4>${a.title}</h4>
-                        <h4>${a.brand}</h4>
-                        <p>가격 : ${a.price}</p>
-                        <input type="number" value = "${a.count}" class="item-count">
-                        <br/><button class="minus" data-id="${a.id}">빼기</button>
-                      </div>
-                    </div>`
-              );
-            });
-          });
+            );
+          }
         });
       });
+    });
+    // 빼기
+    // 싹 지우고, cart array로 쭉 그려.
+    // minus 버튼이 바로 없으므로, basket으로 addeventlistner
+    document.querySelector(".basket").addEventListener("click", function (e) {
+      if (e.target.innerText === "빼기") {
+        e.preventDefault();
+        let productId = e.target.dataset.id;
+        let 몇번째 = cart.findIndex((a) => {
+          return a.id == productId;
+        });
+        cart[몇번째].count--;
+
+        // 다시 그려줘
+        document.querySelector(".basket").innerHTML = "";
+        cart.forEach((a, i) => {
+          if (a.count != 0) {
+            document.querySelector(".basket").insertAdjacentHTML(
+              "beforeend",
+              `
+                <div class="col-md-3">
+                  <div class="item" draggable="true" data-id="${a.id}">
+                    <img src="img/${a.photo}">
+                    <h4>${a.title}</h4>
+                    <h4>${a.brand}</h4>
+                    <p>가격 : ${a.price}</p>
+                    <input type="number" value = "${a.count}" class="item-count">
+                    <br/><button class="minus" data-id="${a.id}">빼기</button>
+                  </div>
+                </div>`
+            );
+          }
+        });
+      }
     });
   });
