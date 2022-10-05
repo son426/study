@@ -1,9 +1,8 @@
-const content1 = [];
+document.querySelector(".center form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  window.location = "search.html";
+});
 
-const width = document.querySelector(".carousel img").clientWidth;
-
-document.querySelector(".carousel-next").addEventListener("click", function () {
-  document.querySelector(
-    ".carousel"
-  ).style.transform = `translateX(-${width}px)`;
+document.querySelector(".content-row").addEventListener("click", function (e) {
+  window.location = "video.html";
 });
