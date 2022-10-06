@@ -9,7 +9,8 @@ header {
 main {
   position: absolute;
   top: 150px;
-  left: 180px;
+  left: 220px;
+  transition: all 1s;
 }
 
 img {
@@ -20,6 +21,8 @@ img {
 .hidden {
   display: none;
 }
+
+/* header */
 
 .header-row {
   display: flex;
@@ -36,20 +39,36 @@ img {
   display: block;
 }
 
+/* sidebar */
+
 .side-bar {
   position: fixed;
   top: 100px;
   left: 0px;
   height: 100vh;
+  width: 150px;
   padding: 20px;
   z-index: 998;
   background-color: white;
+  border: 1px solid black;
+  transition: all 1s;
 }
+
+/* main-content */
 
 .content-row {
   width: 100vw;
   display: flex;
   margin-bottom: 20px;
+}
+
+.content {
+  margin-right: 20px;
+  transition: all 0.5s;
+}
+
+.content-info {
+  padding: 5px;
 }
 
 .content-info_profile {
