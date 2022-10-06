@@ -17,6 +17,10 @@ img {
   height: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 .header-row {
   display: flex;
   height: 30px;
@@ -26,6 +30,10 @@ img {
 .header-column {
   display: flex;
   width: 33%;
+}
+
+.center {
+  display: block;
 }
 
 .side-bar {
@@ -42,14 +50,6 @@ img {
   width: 100vw;
   display: flex;
   margin-bottom: 20px;
-}
-
-.content {
-  width: 33%;
-}
-
-.content-info {
-  display: flex;
 }
 
 .content-info_profile {
