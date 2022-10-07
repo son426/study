@@ -4,6 +4,7 @@ function zoomIn(e) {
   e.target.parentElement.parentElement.style.transform = "scale(1.1)";
   e.target.parentElement.parentElement.style.border = "1px black solid";
   e.target.parentElement.parentElement.style.zIndex = 1;
+  console.log("!");
 }
 
 function zoomOut(e) {
