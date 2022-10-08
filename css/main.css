@@ -1,7 +1,54 @@
+iframe {
+  width: 100%;
+  height: 200px;
+}
+
 .content {
   width: 33%;
+  height: 300px;
 }
 
 .content-info {
   display: flex;
+}
+
+.content-info_profile {
+  position: relative;
+  width: 20%;
+  height: 100px;
+}
+
+.content-info_text {
+  position: relative;
+  width: 80%;
+  height: 100%;
+}
+
+.content-info_profile img {
+  position: absolute;
+  top: 0px;
+}
+
+.content-info_text div:first-child {
+  position: absolute;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.content-channel {
+  font-size: 13px;
+  font-weight: bolder;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.content-info-second {
+  font-size: 13px;
+  font-weight: bolder;
+  color: rgba(0, 0, 0, 0.5);
 }
