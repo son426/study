@@ -1,7 +1,6 @@
 const searchForm = document.querySelector(".search-form");
 const searchInput = searchForm.querySelector("input");
 const searchBtn = searchForm.querySelector("button");
-const contentRow = document.querySelectorAll(".content-row");
 const searchToggle = document.querySelector(".search-toggle");
 const hamBar = document.querySelector(".ham-bar");
 const sideBar = document.querySelector(".side-bar");

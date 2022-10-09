@@ -1,5 +1,9 @@
+body {
+  margin: 0;
+}
+
 header {
-  width: 80vw;
+  width: 100%;
   position: fixed;
   top: 0px;
   background-color: white;
@@ -7,10 +11,10 @@ header {
 }
 
 main {
+  width: 100%;
   position: absolute;
   top: 50px;
   left: 100px;
-  padding: 20px;
   transition: all 1s;
 }
 
