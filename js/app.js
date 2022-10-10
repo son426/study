@@ -12,7 +12,7 @@ const SEARCHKEY = "search";
 let cnt = 0;
 
 hamBar.addEventListener("click", function (e) {
-  sideBar.classList.toggle(HIDDENKEY);
+  // sideBar.classList.toggle(HIDDENKEY);
   sideBarStretch.classList.toggle(HIDDENKEY);
 
   if (cnt % 2 === 0) {

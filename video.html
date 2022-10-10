@@ -56,28 +56,6 @@
       </div>
     </header>
 
-    <div class="side-bar">
-      <div class="side-bar-tab">
-        <i class="fas fa-home"></i>
-        <span>홈</span>
-      </div>
-      <div class="side-bar-tab">
-        <i class="fas fa-compass"></i>
-        <span>탐색</span>
-      </div>
-      <div class="side-bar-tab">
-        <i class="fas fa-play-circle"></i>
-        <span>Shorts</span>
-      </div>
-      <div class="side-bar-tab">
-        <i class="fab fa-youtube"></i>
-        <span>구독</span>
-      </div>
-      <div class="side-bar-tab">
-        <i class="fas fa-file-video"></i>
-        <span>보관함</span>
-      </div>
-    </div>
     <div class="side-bar stretch hidden">
       <div class="side-bar-tab stretch">
         <i class="fas fa-home"></i>
@@ -102,30 +80,130 @@
     </div>
 
     <main>
-      <div class="content-container">
-        <div class="content-row">
-          <div class="content">
-            <div class="content-img">
-              <img src="img/img1.jpg" />
+      <div class="column">
+        <div class="video_wrap"></div>
+        <div class="meta">
+          <div class="meta_row meta_video">
+            <div class="meta_title_wrap">
+              <span class="meta_hashtag">#노래추천 #플레이리스트 #감성</span>
+              <span class="meta_title"
+                >한동근-그대라는사치(설악산 지게꾼 임기종선생님 헌정 MV.)</span
+              >
             </div>
-            <div class="content-info">
-              <div class="content-info_profile">
-                <img class="content-info_img" src="img/profile1.jpg" />
+            <div class="meta_text_icons">
+              <div class="meta_text">
+                <span>조회수 136회</span>
+                <span>2022.09.16</span>
               </div>
-              <div class="content-info_text">
-                <h4>유튜브 제목</h4>
-                <h5>영상 게시자</h5>
-                <span>조회수</span>
-                <span>5년전</span>
+              <div class="meta_icons">
+                <i class="far fa-thumbs-up"><span>8</span></i>
+                <i class="far fa-thumbs-down"><span>3</span></i>
+                <i class="fas fa-share"><span>공유</span></i>
+                <i class="fas fa-download"><span>오프라인 저장</span></i>
+                <i class="fas fa-cut"><span>클립</span></i>
+                <i class="fas fa-folder-plus"><span>저장</span></i>
+                <i class="fas fa-ellipsis-h"></i>
               </div>
             </div>
           </div>
+          <div class="meta_row meta_channel">
+            <div class="meta_channel_row">
+              <div class="meta_profile_img"><img src="img/profile1.jpg" /></div>
+              <div class="meta_profile_text">
+                <div class="channel-name">코리안 사운드</div>
+                <div class="subscribe-num">구독자 79명</div>
+              </div>
+              <div class="subscribe">
+                <button>구독</button>
+              </div>
+            </div>
+            <div class="meta_channel_row">
+              <div class="meta_profile_img"></div>
+              <div class="meta_profile_text2">
+                <span>영상 자세한 설명을 여기 쓰면 돼.</span>
+              </div>
+              <div class="subscribe"></div>
+            </div>
+          </div>
         </div>
+        <div class="comment">
+          <div class="comment_header">
+            <span>댓글 1개</span>
+            <span><i class="fas fa-sort-amount-down"></i>정렬기준</span>
+          </div>
+          <div class="comment_write">
+            <div class="comment_profile"><img src="img/profile2.jpg" /></div>
+            <input type="text" placeholder="공개적으로 댓글을 남길 계정 : ~~" />
+          </div>
+          <div class="comment_list">
+            <ul>
+              <li>
+                <img class="comment_profile" src="img/profile2.jpg" />
+                <div class="comment_column">
+                  <div>
+                    <span>코리안 사운드</span>
+                    <span>2일 전(수정됨)</span>
+                  </div>
+                  <div>
+                    <span>영상의 출처는 ~~~~~~~~~</span>
+                  </div>
+                  <div>
+                    <i class="far fa-thumbs-up">8</i>
+                    <i class="far fa-thumbs-down">3</i>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="filter">
+          <button>모두</button>
+          <button>관련 컨텐츠</button>
+          <button>실시간</button>
+          <button>최근에 업로드</button>
+        </div>
+        <ul class="recommend_video">
+          <li>
+            <div class="recommend_video_wrap">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/EP65TL0Ff4c"
+                frameborder="0"
+              ></iframe>
+            </div>
+            <div>
+              <div>미래에 대한 불안감을 이겨내는 방법</div>
+              <div>멘탈훈련소</div>
+              <div>
+                <span>조회수 47만회</span>
+                <span>8개월 전</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="recommend_video_wrap">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/EP65TL0Ff4c"
+                frameborder="0"
+              ></iframe>
+            </div>
+            <div>
+              <div>미래에 대한 불안감을 이겨내는 방법</div>
+              <div>멘탈훈련소</div>
+              <div>
+                <span>조회수 47만회</span>
+                <span>8개월 전</span>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </main>
 
     <script src="js/app.js"></script>
     <script src="js/search.js"></script>
     <script src="js/zoom.js"></script>
+    <script src="js/video.js"></script>
   </body>
 </html>

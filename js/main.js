@@ -42,6 +42,12 @@ fetch("video.json")
       document
         .querySelectorAll("iframe")
         [i].addEventListener("mouseleave", zoomOut);
+
+      document
+        .querySelectorAll(".content")
+        [i].addEventListener("click", function () {
+          window.location = "video.html";
+        });
     }
   });
 
@@ -64,7 +70,7 @@ function videoPaint() {
         src=${videoArray[cnt2].source}
         title=${videoArray[cnt2].title}
         frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe>
     </div>
