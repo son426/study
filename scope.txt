@@ -34,3 +34,28 @@ javscript
 
 search, video 페이지 html css 디자인
 
+
+/////////////
+1011
+
+지금은 어떤 걸 눌러도, 그냥 video.html에서, 고정된 영상이 나옴.
+1번을 누르면, video.html에서 1번 영상에 대한 메타데이터가 나오게.
+2번을 누르면, video.html에서 2번 영상에 대한 메타데이터가 나오게.
+
+1번 방법 : video1 2 3 html 다 따로 만들어버려. 근데 쓰레기 코드같음.
+2번 방법 : input을 만들어. input에 따라서, video.js에서 컨텐츠 구분해서 넣어주면돼.
+
+<이게 문제 !>
+일단 input이 있어야함.
+main 이나 search 페이지에서 e.currentTarget을 해서, index를 받고.
+video.js에서 index에 접근할 수 있으면 됨. 
+
+일단 자료를 조작해서 먼저 해보자. json object에 index를 각각 추가해서 시도해보자.
+
+if (input === 0){
+    var content = `0번 컨텐츠` 
+} else if(input ===1){
+    var content = `1번 컨텐츠` 
+} else if(input ===2){
+    var content = `2번 컨텐츠` 
+}

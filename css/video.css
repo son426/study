@@ -155,6 +155,14 @@ main {
   padding-top: 20px;
 }
 
+.comment_header span {
+  margin-right: 20px;
+}
+
+.comment_write {
+  margin: 20px 0px;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -164,19 +172,36 @@ ul {
   display: flex;
 }
 
-.comment_column:first-child {
-  width: 10%;
-}
-
-.comment_column:last-child {
-  width: 90%;
-}
-
 li img {
   border-radius: 50%;
 }
 
+.comment_profile {
+  margin-right: 10px;
+}
+
+.comment_row:first-child span:first-child {
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.comment_row:first-child span:last-child {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.comment_row:last-child span {
+  font-size: 13px;
+  margin-right: 10px;
+}
+
 /* 추천동영상 */
+
+.filter button {
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px 10px;
+}
 
 .recommend_video li {
   display: flex;
@@ -186,4 +211,19 @@ li img {
 .recommend_video_wrap iframe {
   width: 200px;
   height: 113px;
+}
+
+.recommend_video_info {
+  margin-left: 10px;
+}
+
+.recommend_video_info .title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.recommend_video_info .channel,
+.recommend_video_info .view_date {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
 }

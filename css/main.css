@@ -65,21 +65,3 @@ iframe {
   display: flex;
   flex-direction: column;
 }
-
-.content-title {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.content-channel {
-  font-size: 13px;
-  font-weight: bolder;
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.content-info-second {
-  font-size: 13px;
-  font-weight: bolder;
-  color: rgba(0, 0, 0, 0.5);
-}

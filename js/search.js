@@ -1,3 +1,5 @@
+/* 검색창에 검색하는거 / 검색기록 저장 */
+
 let searchArr = [];
 let contentArr = document.querySelectorAll(".content");
 

@@ -83,13 +83,13 @@ function videoPaint() {
       </div>
       <div class="content-info_text">
         <div class="content-info-first">
-          <span class="content-title"
+          <span class="title"
             >${videoArray[cnt2].title}</span
           >
-          <span class="content-channel">${videoArray[cnt2].channel}</span>
+          <span class="channel">${videoArray[cnt2].channel}</span>
           <div class="content-info-second">
-            <span>${videoArray[cnt2].view}</span>
-            <span>${videoArray[cnt2].date}</span>
+            <span class="view">${videoArray[cnt2].view}</span>
+            <span class="date">${videoArray[cnt2].date}</span>
           </div>
         </div>
       </div>

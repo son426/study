@@ -1,0 +1,28 @@
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.channel {
+  font-size: 13px;
+  font-weight: bolder;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.view {
+  font-size: 13px;
+  font-weight: bolder;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.date {
+  font-size: 13px;
+  font-weight: bolder;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.subtext {
+  font-size: 13px;
+  font-weight: 200;
+}
