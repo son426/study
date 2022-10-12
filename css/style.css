@@ -29,7 +29,7 @@ img {
 
 /* main-content-header */
 .header-row.class button {
-  border-radius: 40%;
+  border-radius: 30px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   padding: 5px 10px;
   margin-right: 10px;

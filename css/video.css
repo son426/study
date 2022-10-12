@@ -163,6 +163,18 @@ main {
   margin: 20px 0px;
 }
 
+.comment_write form {
+  width: 100%;
+  height: 15px;
+}
+
+.comment_write input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -170,6 +182,7 @@ ul {
 
 .comment_list li {
   display: flex;
+  margin-bottom: 20px;
 }
 
 li img {

@@ -16,12 +16,11 @@ fetch("video.json")
       document
         .querySelectorAll(".content")
         [i].addEventListener("click", function (e) {
-          input = parseInt(
+          clickIndex = parseInt(
             e.currentTarget.querySelector("iframe").dataset.index
           );
-          localStorage.setItem("input", input);
+          localStorage.setItem("input", clickIndex);
           window.location = "video.html";
-          console.log("!!");
         });
     }
   });

@@ -10,6 +10,7 @@ const HIDDENKEY = "hidden";
 const SEARCHKEY = "search";
 
 let cnt = 0;
+let clickIndex = -1;
 
 hamBar.addEventListener("click", function (e) {
   // sideBar.classList.toggle(HIDDENKEY);

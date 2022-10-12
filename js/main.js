@@ -45,7 +45,11 @@ fetch("video.json")
 
       document
         .querySelectorAll(".content")
-        [i].addEventListener("click", function () {
+        [i].addEventListener("click", function (e) {
+          clickIndex = parseInt(
+            e.currentTarget.querySelector("iframe").dataset.index
+          );
+          localStorage.setItem("input", clickIndex);
           window.location = "video.html";
         });
     }
@@ -72,6 +76,7 @@ function videoPaint() {
         frameborder="0"
         allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
+        data-index = ${videoArray[cnt2].index}
       ></iframe>
     </div>
     <div class="content-info">
