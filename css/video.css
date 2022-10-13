@@ -240,3 +240,10 @@ li img {
   font-size: 13px;
   color: rgba(0, 0, 0, 0.6);
 }
+
+/* 구독 버튼 클래스 */
+
+.subscribe_ing {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: black !important;
+}

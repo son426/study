@@ -24,10 +24,8 @@ commentForm.addEventListener("submit", function (e) {
         <span>${commentInput.value}</span>
       </div>
       <div class="comment_row">
-        <i class="far fa-thumbs-up"></i>
-        <span class="up-num">8</span>
-        <i class="far fa-thumbs-down"></i>
-        <span class="down-num">3</span>
+        <i class="far fa-thumbs-up"><span class="up-num">8</span></i>
+        <i class="far fa-thumbs-down"><span class="down-num">3</span></i>
       </div>
     </div>
   </li>
@@ -44,5 +42,5 @@ commentForm.addEventListener("submit", function (e) {
   ).innerHTML = `댓글 ${commentCnt}개`;
 
   // 좋아요 버튼
-  따봉업다운();
+  따봉업다운("comment_row");
 });

@@ -38,8 +38,8 @@ fetch("video.json")
             <span class="date">${videoArray[input].date}</span>
           </div>
           <div class="meta_icons">
-            <i class="far fa-thumbs-up"><span>8</span></i>
-            <i class="far fa-thumbs-down"><span>3</span></i>
+            <i class="far fa-thumbs-up"><span class="up-num">8</span></i>
+            <i class="far fa-thumbs-down"><span class="down-num">3</span></i>
             <i class="fas fa-share"><span>공유</span></i>
             <i class="fas fa-download"><span>오프라인 저장</span></i>
             <i class="fas fa-cut"><span>클립</span></i>
@@ -72,7 +72,7 @@ fetch("video.json")
       document
         .querySelector(".main_big .column:first-child")
         .insertAdjacentHTML("afterbegin", content);
-      document.querySelector(".main_small").classList.add("hidden");
+      document.querySelector(".main_small").classList.add(HIDDENKEY);
 
       // 추천동영상에도 링크 이동 달아주기.
       document
@@ -81,18 +81,29 @@ fetch("video.json")
           window.location = "video.html";
         });
     } else {
-      document.querySelector(".main_big").classList.add("hidden");
+      document.querySelector(".main_big").classList.add(HIDDENKEY);
     }
+
+    // 따봉버튼 이벤트
+    따봉업다운("meta_icons");
+
+    // 구독버튼 이벤트
+    const btnSubscribe = document.querySelector(".subscribe button");
+    btnSubscribe.addEventListener("mouseenter", zoomIn);
+    btnSubscribe.addEventListener("mouseleave", zoomOut);
+    btnSubscribe.addEventListener("click", function () {
+      btnSubscribe.classList.toggle("subscribe_ing");
+    });
   });
 
 // 창 크기 조절할때마다, 큰화면 작은화면 적용되게.
 
 window.addEventListener("resize", function () {
   if (window.innerWidth < 1015) {
-    document.querySelector(".main_big").classList.add("hidden");
-    document.querySelector(".main_small").classList.remove("hidden");
+    document.querySelector(".main_big").classList.add(HIDDENKEY);
+    document.querySelector(".main_small").classList.remove(HIDDENKEY);
   } else {
-    document.querySelector(".main_big").classList.remove("hidden");
-    document.querySelector(".main_small").classList.add("hidden");
+    document.querySelector(".main_big").classList.remove(HIDDENKEY);
+    document.querySelector(".main_small").classList.add(HIDDENKEY);
   }
 });

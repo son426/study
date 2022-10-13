@@ -1,28 +1,43 @@
-function 따봉업다운() {
-  let upNumArr = document.querySelectorAll(".up-num");
-  let downNumArr = document.querySelectorAll(".down-num");
+const UP_CLASSNAME = "fa-thumbs-up";
+const DOWN_CLASSNAME = "fa-thumbs-down";
+const SELECTED_CLASSNAME = "fas";
+const NOTSELECTED_CLASSNAME = "far";
 
-  let upBtnArr = document.querySelectorAll(".comment_row .fa-thumbs-up");
-  let downBtnArr = document.querySelectorAll(".comment_row .fa-thumbs-down");
+function 따봉업다운(part) {
+  let upNumArr = document.querySelectorAll(`.${part} .up-num`);
+  let downNumArr = document.querySelectorAll(`.${part} .down-num`);
+
+  let upBtnArr = document.querySelectorAll(`.${part} .${UP_CLASSNAME}`);
+  let downBtnArr = document.querySelectorAll(`.${part} .${DOWN_CLASSNAME}`);
 
   for (let i = 0; i < upNumArr.length; i++) {
+    // up버튼 줌
+    upBtnArr[i].addEventListener("mouseenter", zoomIn);
+    upBtnArr[i].addEventListener("mouseleave", zoomOut);
+
+    // up버튼 숫자반영 & 색칠
     upBtnArr[i].addEventListener("click", function () {
-      if (upBtnArr[i].className === "far fa-thumbs-up") {
+      if (upBtnArr[i].classList.contains(NOTSELECTED_CLASSNAME)) {
         upNumArr[i].innerHTML = parseInt(upNumArr[i].innerHTML) + 1;
-        upBtnArr[i].className = "fas fa-thumbs-up";
+        upBtnArr[i].className = `${SELECTED_CLASSNAME} ${UP_CLASSNAME}`;
       } else {
         upNumArr[i].innerHTML = parseInt(upNumArr[i].innerHTML) - 1;
-        upBtnArr[i].className = "far fa-thumbs-up";
+        upBtnArr[i].className = `${NOTSELECTED_CLASSNAME} ${UP_CLASSNAME}`;
       }
     });
 
+    // down버튼 줌
+    downBtnArr[i].addEventListener("mouseenter", zoomIn);
+    downBtnArr[i].addEventListener("mouseleave", zoomOut);
+
+    // down버튼 숫자 & 색칠
     downBtnArr[i].addEventListener("click", function () {
-      if (downBtnArr[i].className === "far fa-thumbs-down") {
+      if (downBtnArr[i].classList.contains(NOTSELECTED_CLASSNAME)) {
         downNumArr[i].innerHTML = parseInt(downNumArr[i].innerHTML) + 1;
-        downBtnArr[i].className = "fas fa-thumbs-down";
+        downBtnArr[i].className = `${SELECTED_CLASSNAME} ${DOWN_CLASSNAME}`;
       } else {
         downNumArr[i].innerHTML = parseInt(downNumArr[i].innerHTML) - 1;
-        downBtnArr[i].className = "far fa-thumbs-down";
+        downBtnArr[i].className = `${NOTSELECTED_CLASSNAME} ${DOWN_CLASSNAME}`;
       }
     });
   }

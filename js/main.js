@@ -36,12 +36,12 @@ fetch("video.json")
     // zoomIn zoomOut 추가
     for (let i = 0; i < videoCount; i++) {
       document
-        .querySelectorAll("iframe")
-        [i].addEventListener("mouseenter", zoomIn);
+        .querySelectorAll(".content")
+        [i].addEventListener("mouseenter", videoZoomIn);
 
       document
-        .querySelectorAll("iframe")
-        [i].addEventListener("mouseleave", zoomOut);
+        .querySelectorAll(".content")
+        [i].addEventListener("mouseleave", videoZoomOut);
 
       document
         .querySelectorAll(".content")
