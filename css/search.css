@@ -39,12 +39,8 @@ img {
   transition: all 0.5s;
 }
 
-.content .img {
-  width: 30%;
-}
-
 .content .info {
-  width: 70%;
+  padding-left: 30px;
 }
 
 .content .channel {

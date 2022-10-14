@@ -4,7 +4,7 @@
   display: flex;
   height: 30px;
   padding: 10px;
-  align-items: center;
+  align-items: baseline;
   border-bottom: var(--main-border);
 }
 
@@ -77,13 +77,21 @@
 
 .search-toggle {
   background-color: white;
-  width: 63%;
+  width: 65%;
+  list-style-type: none;
 }
 
 .search-toggle li {
   padding: 5px;
   border-top: var(--main-border);
   border-bottom: var(--main-border);
+}
+
+.search-toggle li:before {
+  content: "\f1da";
+  font-family: FontAwesome;
+  margin-left: -30px;
+  margin-right: 10px;
 }
 
 .hidden {

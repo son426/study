@@ -12,7 +12,7 @@ fetch("video.json")
 
     videoPaint();
 
-    for (let i = 0; i < videoCount; i++) {
+    for (let i = 0; i < document.querySelectorAll(".content").length; i++) {
       document
         .querySelectorAll(".content")
         [i].addEventListener("click", function (e) {
@@ -26,8 +26,10 @@ fetch("video.json")
   });
 
 function videoPaint() {
+  let searchWord = localStorage.getItem("searchNow");
   for (let i = 0; i < videoCount; i++, cnt2++) {
-    var content = `
+    if (videoArray[cnt2].title.includes(searchWord)) {
+      var content = `
     <div class="content-row">
             <div class="content">
               <div class="img">
@@ -58,8 +60,9 @@ function videoPaint() {
               </div>
             </div>
           </div>`;
-    document
-      .querySelector(".content-container")
-      .insertAdjacentHTML("beforeend", content);
+      document
+        .querySelector(".content-container")
+        .insertAdjacentHTML("beforeend", content);
+    }
   }
 }
