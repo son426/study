@@ -1,58 +1,31 @@
+import userEvent from "@testing-library/user-event";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [counter, setCounter] = useState(0);
-  const [keyword, setKeyword] = useState("");
-  const onClick = () => {
-    setCounter((prev) => prev + 1);
+  const [todo, setTodo] = useState("");
+  const [todos, setTodos] = useState([]);
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setTodos((currentArray) => [todo, ...currentArray]);
+    event.target[0].value = "";
   };
+
   const onChange = (event) => {
-    setKeyword(event.target.value);
-  };
-  useEffect(() => {
-    console.log("i run once");
-  }, []);
-
-  useEffect(() => {
-    console.log("키워드변화");
-  }, [keyword]);
-
-  useEffect(() => {
-    console.log("카운터변화");
-  }, [counter]);
-
-  useEffect(() => {
-    console.log("둘 중 하나라도 변화");
-  }, [keyword, counter]);
-
-  // cleanup func
-
-  const [showing, setShowing] = useState(false);
-  const cleanUp = () => {
-    setShowing((prev) => !prev);
-  };
-
-  const Hello = () => {
-    useEffect(() => {
-      console.log("hi");
-      return () => console.log("bye");
-    }, []);
-
-    return <h1>Hello</h1>;
+    setTodo(event.target.value);
   };
 
   return (
     <div>
-      <div>
-        <input onChange={onChange} type="text" placeholder="검색창" />
-        <h1>{counter}</h1>
-        <button onClick={onClick}>Click me!!</button>
-      </div>
+      <h3>To Do List ({todos.length})</h3>
+      <form onSubmit={onSubmit}>
+        <input onChange={onChange} type="text" placeholder="입력하세요" />
+        <button>저장</button>
+      </form>
       <hr />
-      <div>
-        {showing ? <Hello /> : null}
-        <button onClick={cleanUp}>{showing ? "hide" : "show"}</button>
-      </div>
+      {todos.map((element, index) => (
+        <li key={index}>{element}</li>
+      ))}
     </div>
   );
 }
