@@ -2,44 +2,38 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [coins, setCoins] = useState([]);
-  const [dollar, setDollar] = useState(0);
-
-  const onChange = (event) => {
-    setDollar(event.target.value);
-  };
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch("https://api.coinpaprika.com/v1/tickers")
+    fetch(
+      "https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year"
+    )
       .then((response) => response.json())
       .then((json) => {
-        setCoins(json);
+        setMovies(json.data.movies);
         setLoading(false);
       });
   }, []);
 
   return (
     <div>
-      <h1>The coins {loading ? null : `(${coins.length})`}</h1>
-      {loading ? (
-        <h3>Loading..</h3>
-      ) : (
-        <select>
-          {loading
-            ? null
-            : coins.map((element) => (
-                <option key={element.id}>
-                  {element.name} // {element.symbol} : $
-                  {element.quotes.USD.price}
-                  // {dollar / parseFloat(element.quotes.USD.price)}개 살 수
-                  있음.
-                </option>
-              ))}
-        </select>
-      )}
+      {loading ? <h1>Loading...</h1> : <h1>Movie List</h1>}
+
       <div>
-        <label htmlFor="dollarInput">몇달러</label>
-        <input onChange={onChange} id="dollarInput" type="number" />
+        {movies.map((movie) => (
+          <div key={movie.id}>
+            <img src={movie.medium_cover_image} />
+            <h2>{movie.title}</h2>
+            <p>{movie.summary}</p>
+            {movie.hasOwnProperty("genres") ? (
+              <ul>
+                {movie.genres.map((g) => (
+                  <li key={g}>{g}</li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        ))}
       </div>
     </div>
   );
