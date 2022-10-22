@@ -19,7 +19,11 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      {loading ? <h1>Loading...</h1> : <h1>Movie List</h1>}
+      {loading ? (
+        <h1 className={styles.header}>Loading...</h1>
+      ) : (
+        <h1 className={styles.header}>Movie List</h1>
+      )}
       <div className={styles.movies}>
         {/* {movies[0].title} */}
         {movies.map((movie) => (

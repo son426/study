@@ -5,7 +5,7 @@ import styles from "./Movie.module.css";
 
 function Movie({ id, cover_image, title, summary, year }) {
   return (
-    <div className={styles.container}>
+    <div className={styles.movie_container}>
       <img className={styles.movie_img} src={cover_image} />
       <div className={styles.text_box}>
         <h2 className={styles.movie_title}>
