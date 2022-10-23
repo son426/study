@@ -23,7 +23,10 @@ function Detail() {
   return (
     <div>
       <h1>
-        <Link to="/">Go Home</Link>
+        <Link to="/movie">Back to MovieList</Link>
+      </h1>
+      <h1>
+        <Link to="/">Back to Profile</Link>
       </h1>
       {loading ? <h1>Loading...</h1> : <h1>{data.title}</h1>}
       <hr />
