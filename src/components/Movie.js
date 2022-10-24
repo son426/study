@@ -2,21 +2,14 @@ import Proptypes from "prop-types";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./Movie.module.css";
-
-const zoomIn = (event) => {
-  event.currentTarget.style.transform = "scale(1.1)";
-};
-
-const zoomOut = (event) => {
-  event.currentTarget.style.transform = "scale(1.0)";
-};
+import * as common from "../CommonFunction.js";
 
 function Movie({ id, cover_image, title, summary, year }) {
   return (
     <Link className={styles.router} to={`/movie/${id}`}>
       <div
-        onMouseEnter={zoomIn}
-        onMouseLeave={zoomOut}
+        onMouseEnter={common.zoomIn}
+        onMouseLeave={common.zoomOut}
         className={styles.movie_container}
       >
         <img className={styles.movie_img} src={cover_image} />

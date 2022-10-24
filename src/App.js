@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
 import Profile from "./routes/Profile";
+import ManageProfile from "./routes/ManageProfile";
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
         </Route>
         <Route path="/movie">
           <Home />
+        </Route>
+        <Route path="/ManageProfile">
+          <ManageProfile />
         </Route>
         <Route path="/">
           <Profile />
