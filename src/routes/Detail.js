@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Movie from "../components/Movie";
 import DetailMovie from "../components/DetailMovie";
+import styles from "./Detail.module.css";
 
 function Detail() {
   const x = useParams();
@@ -13,6 +14,7 @@ function Detail() {
       .then((response) => response.json())
       .then((json) => {
         setData(json.data.movie);
+        console.log(json.data.movie);
         setLoading(false);
 
         // console.log(json);
@@ -21,21 +23,16 @@ function Detail() {
   }, []);
 
   return (
-    <div>
-      <h1>
-        <Link to="/movie">Back to MovieList</Link>
-      </h1>
-      <h1>
-        <Link to="/">Back to Profile</Link>
-      </h1>
-      {loading ? <h1>Loading...</h1> : <h1>{data.title}</h1>}
-      <hr />
-      {loading ? null : (
+    <div className={styles.container}>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
         <DetailMovie
-          img_src={data.medium_cover_image}
           title={data.title}
+          img_src={data.background_image_original}
           rating={data.rating}
           description={data.description_full}
+          year={data.year}
         />
       )}
     </div>
