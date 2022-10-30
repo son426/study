@@ -1,0 +1,19 @@
+{
+  "name": "study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/son426/react_study1.git"
+  },
+  "author": "son",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/son426/react_study1/issues"
+  },
+  "homepage": "https://github.com/son426/react_study1#readme"
+}
