@@ -84,6 +84,7 @@ const WordRelay = () => {
 
   return (
     <>
+      <div></div>
       <div>{word}</div>
       <div>
         <form onSubmit={onSubmit}>
