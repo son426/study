@@ -14,4 +14,15 @@ class Try extends Component {
   }
 }
 
+// const Try = (props) => {
+//   return (
+//     <>
+//       <li>
+//         <h4>답변 : {props.tryinfo.try}</h4>
+//         <p>결과 : {props.tryinfo.result}</p>
+//       </li>
+//     </>
+//   );
+// };
+
 module.exports = Try;
