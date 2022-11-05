@@ -8,4 +8,4 @@ const ResponseCheck_class = require("./반응속도 체크/ResponseCheck-class")
 const ResponseCheck_hooks = require("./반응속도 체크/ResponseCheck-hooks");
 const RSP_class = require("./RSP-class");
 
-ReactDOM.render(<ResponseCheck_class />, document.querySelector("#root"));
+ReactDOM.render(<RSP_class />, document.querySelector("#root"));
