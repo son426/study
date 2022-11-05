@@ -51,12 +51,12 @@ const RSP_hooks = () => {
       setScore((prevScore) => prevScore - 1);
     }
     setTimeout(() => {
-      interval.current = setInterval(changeHand, 500);
+      interval.current = setInterval(changeHand, 100);
     }, 1000);
   };
 
   useEffect(() => {
-    interval.current = setInterval(changeHand, 500);
+    interval.current = setInterval(changeHand, 100);
     return () => {
       clearInterval(interval.current);
     };
