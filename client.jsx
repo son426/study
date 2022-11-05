@@ -7,5 +7,6 @@ const NumberBaseball_hooks = require("./숫자야구/NumberBaseball-hooks");
 const ResponseCheck_class = require("./반응속도 체크/ResponseCheck-class");
 const ResponseCheck_hooks = require("./반응속도 체크/ResponseCheck-hooks");
 const RSP_class = require("./RSP-class");
+const RSP_hooks = require("./RSP-hooks");
 
-ReactDOM.render(<RSP_class />, document.querySelector("#root"));
+ReactDOM.render(<RSP_hooks />, document.querySelector("#root"));
