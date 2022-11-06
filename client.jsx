@@ -9,5 +9,6 @@ const ResponseCheck_hooks = require("./반응속도 체크/ResponseCheck-hooks")
 const RSP_class = require("./가위바위보/RSP-class");
 const RSP_hooks = require("./가위바위보/RSP-hooks");
 const Lotto_hooks = require("./로또/Lotto-hooks");
+const Lotto_class = require("./로또/Lotto-class");
 
-ReactDOM.render(<Lotto_hooks />, document.querySelector("#root"));
+ReactDOM.render(<Lotto_class />, document.querySelector("#root"));
