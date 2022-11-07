@@ -2,12 +2,15 @@ const { useState, Component } = require("react");
 const React = require("react");
 const ReactDOM = require("react-dom");
 
+const LottoNum = require("./LottoNum");
+
 function getWinNumbers() {
   console.log("getWinNumbers");
   const candidate = Array(45)
     .fill()
     .map((v, i) => i + 1);
   const shuffle = [];
+  console.log(candidate);
 
   while (candidate.length > 0) {
     shuffle.push(
@@ -28,15 +31,19 @@ class Lotto_class extends Component {
     redo: false,
   };
 
-  componentDidMount() {
+  timeout = [];
+  ballPick = (i) =>
+    this.setState((prevState) => {
+      return {
+        winBalls: [...prevState.winBalls, this.state.winNumbers[i]],
+      };
+    });
+
+  runTimeouts = () => {
     for (let i = 0; i < this.state.winNumbers.length - 1; i++) {
-      setTimeout(() => {
-        this.setState((prevState) => {
-          return {
-            winBalls: [...prevState.winBalls, this.state.winNumbers[i]],
-          };
-        });
-      }, 1000 * i);
+      this.timeout[i] = setTimeout(() => {
+        this.ballPick(i);
+      }, 1000 * (i + 1));
     }
     setTimeout(() => {
       this.setState((prevState) => {
@@ -45,16 +52,26 @@ class Lotto_class extends Component {
           redo: true,
         };
       });
-    }, (this.state.winNumbers.length - 1) * 1000);
-    console.log(this.state.winBalls);
+    }, this.state.winNumbers.length * 1000);
+  };
+
+  componentDidMount() {
+    console.log("didMount");
+    this.runTimeouts();
   }
 
   componentDidUpdate() {
-    console.log(this.state);
+    console.log("didUpdate");
+    if (this.state.winBalls.length === 0) {
+      this.runTimeouts();
+    }
   }
 
   componentWillUnmount() {
-    // setTimeout 정리해줘야함.
+    this.timeout.forEach((v) => {
+      clearTimeout(v);
+    });
+    clearTimeout(this.timeout);
   }
 
   onClickRedo = () => {
@@ -64,25 +81,10 @@ class Lotto_class extends Component {
       bonus: null,
       redo: false,
     });
-    for (let i = 0; i < this.state.winNumbers.length - 1; i++) {
-      setTimeout(() => {
-        this.setState((prevState) => {
-          return {
-            winBalls: [...prevState.winBalls, this.state.winNumbers[i]],
-          };
-        });
-      }, 1000 * i);
-    }
-    setTimeout(() => {
-      this.setState((prevState) => {
-        return {
-          bonus: this.state.winNumbers[this.state.winNumbers.length - 1],
-          redo: true,
-        };
-      });
-    }, (this.state.winNumbers.length - 1) * 1000);
-    console.log(this.state.winBalls);
+    this.timeout = [];
   };
+
+  background;
 
   render() {
     return (
@@ -90,18 +92,12 @@ class Lotto_class extends Component {
         <div>당첨숫자</div>
         <div className="lotto">
           {this.state.winBalls.map((v) => {
-            return (
-              <div key={v} className="lottoNum">
-                {v}
-              </div>
-            );
+            return <LottoNum key={v} num={v} />;
           })}
         </div>
         <div>보너스 숫자!</div>
         <div className="lotto">
-          {this.state.bonus ? (
-            <div className="lottoNum">{this.state.bonus}</div>
-          ) : null}
+          {this.state.bonus ? <LottoNum num={this.state.bonus} /> : null}
         </div>
         {this.state.redo ? (
           <button onClick={this.onClickRedo}>한번 더</button>
