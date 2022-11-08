@@ -3,14 +3,15 @@ import ReactDOM from "react-dom";
 
 import Td from "./Td";
 
-const Tr = (props) => {
+const Tr = ({ rowData }) => {
   return (
-    <>
-      <div className="tr">
-        <Td status={props.status} /> <Td status={props.status} />{" "}
-        <Td status={props.status} />
-      </div>
-    </>
+    <tr>
+      {Array(rowData.length)
+        .fill()
+        .map((td) => (
+          <Td>{""}</Td>
+        ))}
+    </tr>
   );
 };
 

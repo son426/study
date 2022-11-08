@@ -4,22 +4,15 @@ import { useCallback, useState, useEffect, useRef } from "react";
 
 import Tr from "./Tr";
 
-const Table = () => {
-  const [status, setStatus] = useState("O");
-
+const Table = ({ onClick, tableData }) => {
   return (
-    <>
-      <div>
-        <Tr status={status} />
-      </div>
-      <div>
-        <Tr status={status} />
-      </div>
-      <div>
-        <Tr status={status} />
-      </div>
-      <h3>차례 : {status}</h3>
-    </>
+    <table onClick={onClick}>
+      {Array(tableData.length)
+        .fill()
+        .map((tr, i) => (
+          <Tr rowData={tableData[i]} />
+        ))}
+    </table>
   );
 };
 
