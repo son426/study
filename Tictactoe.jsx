@@ -1,122 +1,166 @@
-import React, { useState, useReducer, useCallback, useEffect } from "react";
-import ReactDOM from "react-dom";
-
-import Table from "./Table";
-
-const initialState = {
-  winner: "",
-  turn: "O",
-  tableData: [
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-  ],
-  recentCell: [-1, -1],
-};
-
-export const SET_WINNER = "SET_WINNER";
-export const CLICK_CELL = "CLICK_CELL";
-export const SET_TURN = "SET_TURN";
-export const RESET_GAME = "RESET_GAME";
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case SET_WINNER:
-      return {
-        ...state,
-        winner: action.winner,
-      };
-    case CLICK_CELL: {
-      const tableData = [...state.tableData];
-      tableData[action.row][action.cell] = state.turn;
-      return {
-        ...state,
-        tableData,
-        recentCell: [action.row, action.cell],
-      };
-    }
-    case SET_TURN:
-      return {
-        ...state,
-        turn: state.turn === "O" ? "X" : "O",
-      };
-    case RESET_GAME:
-      return {
-        ...state,
-        turn: "O",
-        tableData: [
-          ["", "", ""],
-          ["", "", ""],
-          ["", "", ""],
-        ],
-        recentCell: [-1, -1],
-      };
-  }
-};
+import React, { useState, useCallback, useEffect } from "react";
 
 const Tictactoe = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [turn, setTurn] = useState("O");
+  const [winner, setWinner] = useState("");
+  const [tableData, setTableData] = useState([
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
+  ]);
+  const [recentCell, setRecentCell] = useState([]);
 
-  //   const [winner, setWinner] = useState("");
-  //   const [turn, setTurn] = useState("O");
-  //   const [tableData, setTableData] = useState([
-  // ["", "", ""],
-  // ["", "", ""],
-  // ["", "", ""],
-  //   ]);
-
-  const onClickTable = useCallback(() => {
-    dispatch({ type: SET_WINNER, winner: "O" }, []);
+  const onClickTd = useCallback(([row, col]) => {
+    console.log("onclicktd");
+    console.log(row, col);
+    console.log(tableData);
+    let table = tableData;
+    table[row][col] = turn;
+    setTableData(table); // 이렇게 바꾸면 안되지않나?
+    setRecentCell([row, col]); // 이렇게 바꾸면 안되지않나?
   });
 
   useEffect(() => {
-    const [row, cell] = state.recentCell;
-    let win = false;
-
-    if (row < 0) return;
     if (
-      state.tableData[row][0] === state.turn &&
-      state.tableData[row][1] === state.turn &&
-      state.tableData[row][2] === state.turn
+      (tableData[0][0] === turn &&
+        tableData[0][1] === turn &&
+        tableData[0][2] === turn) ||
+      (tableData[1][0] === turn &&
+        tableData[1][1] === turn &&
+        tableData[1][2] === turn) ||
+      (tableData[2][0] === turn &&
+        tableData[2][1] === turn &&
+        tableData[2][2] === turn) ||
+      (tableData[0][0] === turn &&
+        tableData[1][0] === turn &&
+        tableData[2][0] === turn) ||
+      (tableData[0][1] === turn &&
+        tableData[1][1] === turn &&
+        tableData[2][1] === turn) ||
+      (tableData[0][2] === turn &&
+        tableData[1][2] === turn &&
+        tableData[2][2] === turn) ||
+      (tableData[0][0] === turn &&
+        tableData[1][1] === turn &&
+        tableData[2][2] === turn) ||
+      (tableData[0][2] === turn &&
+        tableData[1][1] === turn &&
+        tableData[2][0] === turn)
     ) {
-      win = true;
-    }
-    if (
-      state.tableData[0][cell] === state.turn &&
-      state.tableData[1][cell] === state.turn &&
-      state.tableData[2][cell] === state.turn
-    ) {
-      win = true;
-    }
-    if (
-      state.tableData[0][0] === state.turn &&
-      state.tableData[1][1] === state.turn &&
-      state.tableData[2][2] === state.turn
-    ) {
-      win = true;
-    }
-    if (
-      state.tableData[0][2] === state.turn &&
-      state.tableData[1][1] === state.turn &&
-      state.tableData[2][0] === state.turn
-    ) {
-      win = true;
-    }
-
-    if (win) {
-      dispatch({ type: SET_WINNER, winner: state.turn }, []);
-      dispatch({ type: RESET_GAME }, []);
+      console.log("끝");
+      setWinner(turn); // 얘는 비동기니까 이렇게 처리하면 안되나?
+      setTurn(winner === "O" ? "X" : "O");
+      setTableData([
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""],
+      ]);
     } else {
-      console.log("턴 넘겨");
-      dispatch({ type: SET_TURN }, []);
+      setTurn(turn === "O" ? "X" : "O");
     }
-  }, [state.recentCell]);
+  }, [recentCell]);
 
   return (
     <>
-      <Table tableData={state.tableData} dispatch={dispatch} />
-      {state.winner && <h3>{state.winner}님의 승리</h3>}
-      <p>{state.turn}님의 차례</p>
+      {console.log("render")}
+      <table>
+        <tbody>
+          {Array(tableData.length)
+            .fill()
+            .map((value1, row) => {
+              console.log(tableData[row]);
+              return (
+                <tr>
+                  {Array(tableData[row].length)
+                    .fill()
+                    .map(
+                      (value2, col) => {
+                        console.log(tableData[row][col]);
+                        return (
+                          <td
+                            onClick={() => {
+                              onClickTd([row, col]);
+                            }}
+                          ></td>
+                        );
+                      }
+                      // <td
+                      //   onClick={(e) => {
+                      //     onClickTd([row, col]);
+                      //   }}
+                      // ></td>
+                    )}
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+
+      {/* {Array(tableData.length)
+                  .fill()
+                  .map((value, col) => 
+                  <td onClick={(e)=>{
+                    onClickTd([row,col], e);    
+                  }}></td>
+              </tr> */}
+      {/* <table>
+        <tbody>
+          <tr>
+            <td
+              onClick={(e) => {
+                onClickTd([0, 0], e);
+              }}
+            ></td>
+            <td
+              onClick={(e) => {
+                onClickTd([0, 1], e);
+              }}
+            ></td>
+            <td
+              onClick={(e) => {
+                onClickTd([0, 2], e);
+              }}
+            ></td>
+          </tr>
+          <tr>
+            <td
+              onClick={(e) => {
+                onClickTd([1, 0], e);
+              }}
+            ></td>
+            <td
+              onClick={(e) => {
+                onClickTd([1, 1], e);
+              }}
+            ></td>
+            <td
+              onClick={(e) => {
+                onClickTd([1, 2], e);
+              }}
+            ></td>
+          </tr>
+          <tr>
+            <td
+              onClick={(e) => {
+                onClickTd([2, 0], e);
+              }}
+            ></td>
+            <td
+              onClick={(e) => {
+                onClickTd([2, 1], e);
+              }}
+            ></td>
+            <td
+              onClick={(e) => {
+                onClickTd([2, 2], e);
+              }}
+            ></td>
+          </tr>
+        </tbody>
+      </table> */}
+      <h4>승리 : {winner === "" ? null : winner + "가 승리했습니다."}</h4>
+
+      <h4>차례 : {turn} 이 둘 차례입니다.</h4>
     </>
   );
 };
