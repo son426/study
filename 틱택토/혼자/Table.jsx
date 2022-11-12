@@ -3,7 +3,7 @@ import Tr from "./Tr";
 
 const Table = (props) => {
   return (
-    <table onClick={props.onClick}>
+    <table>
       <tbody>
         {Array(props.tableData.length)
           .fill()
@@ -13,9 +13,7 @@ const Table = (props) => {
                 key={i}
                 tableData={props.tableData}
                 rowIndex={i}
-                setTableData={props.setTableData}
-                turn={props.turn}
-                setTurn={props.setTurn}
+                dispatch={props.dispatch}
               />
             );
           })}

@@ -3,6 +3,11 @@ import ReactDOM from "react-dom";
 
 import Table from "./Table";
 
+export const SET_WINNER = "SET_WINNER";
+export const CLICK_CELL = "CLICK_CELL";
+export const SET_TURN = "SET_TURN";
+export const RESET_GAME = "RESET_GAME";
+
 const initialState = {
   winner: "",
   turn: "O",
@@ -13,11 +18,6 @@ const initialState = {
   ],
   recentCell: [-1, -1],
 };
-
-export const SET_WINNER = "SET_WINNER";
-export const CLICK_CELL = "CLICK_CELL";
-export const SET_TURN = "SET_TURN";
-export const RESET_GAME = "RESET_GAME";
 
 const reducer = (state, action) => {
   switch (action.type) {

@@ -14,9 +14,7 @@ const Tr = (props) => {
               key={i}
               rowIndex={props.rowIndex}
               colIndex={i}
-              setTableData={props.setTableData}
-              turn={props.turn}
-              setTurn={props.setTurn}
+              dispatch={props.dispatch}
             />
           );
         })}
