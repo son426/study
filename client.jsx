@@ -12,5 +12,6 @@ const Lotto_hooks = require("./로또/Lotto-hooks");
 const Lotto_class = require("./로또/Lotto-class");
 // import Tictactoe from "./틱택토/Tictactoe";
 import Tictactoe from "./틱택토/혼자/Tictactoe";
+import MineSearch from "./지뢰찾기/MineSearch";
 
-ReactDOM.render(<Tictactoe />, document.querySelector("#root"));
+ReactDOM.render(<MineSearch />, document.querySelector("#root"));
