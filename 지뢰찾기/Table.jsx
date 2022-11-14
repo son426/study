@@ -2,6 +2,7 @@ import React from "react";
 import { useCallback, useState, useContext } from "react";
 import { START_GAME } from "./MineSearch";
 import { TableContext } from "./MineSearch";
+import Tr from "./Tr";
 
 const Table = () => {
   const [row, setRow] = useState(10);
@@ -12,8 +13,7 @@ const Table = () => {
   const onClickBtn = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(row, cell, mine);
-      dispatch({ type: START_GAME });
+      dispatch({ type: START_GAME, row: row, cell: cell, mine: mine });
     },
     [row, cell, mine]
   );
@@ -45,6 +45,15 @@ const Table = () => {
         <input type="number" value={mine} onChange={onChangeMine} />
         <button onClick={onClickBtn}>버튼</button>
       </form>
+      <table>
+        <tbody>
+          {Array(tableData.length)
+            .fill()
+            .map((tr, i) => (
+              <Tr key={i} rowIndex={i} />
+            ))}
+        </tbody>
+      </table>
     </>
   );
 };
