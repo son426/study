@@ -21,13 +21,12 @@ export const CODE = {
 export const TableContext = createContext({
   tableData: [],
   dispatch: () => {},
+  halted: false,
 });
 
 const initialState = {
   tableData: [],
-  row: 0,
-  cell: 0,
-  mine: 0,
+  halted: false,
 };
 
 const plantMine = (row, cell, mine) => {
@@ -70,6 +69,9 @@ const plantMine = (row, cell, mine) => {
 export const START_GAME = "START_GAME";
 export const OPEN_CELL = "OPEN_CELL";
 export const CLICK_MINE = "CLICK_MINE";
+export const FLAG_CELL = "FLAG_CELL";
+export const QUESTION_CELL = "QUESTION_CELL";
+export const NORMALIZE_CELL = "NORMALIZE_CELL";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -78,17 +80,44 @@ const reducer = (state, action) => {
       return {
         ...state,
         tableData: plantMine(action.row, action.cell, action.mine),
+        halted: false,
       };
-    case OPEN_CELL:
-      console.log("OPENCELL");
+    case OPEN_CELL: {
+      console.log("OPEN_CELL");
       const tableData = [...state.tableData];
       tableData[action.row] = [...state.tableData[action.row]];
-      tableData[action.row][action.cell] = CODE.OPENED;
+      // 근처 지뢰갯수 표시하기
+      let around = [];
+
+      if (tableData[action.row - 1]) {
+        around = around.concat(
+          tableData[action.row - 1][action.cell - 1],
+          tableData[action.row - 1][action.cell],
+          tableData[action.row - 1][action.cell + 1]
+        );
+      }
+      if (tableData[action.row + 1]) {
+        around = around.concat(
+          tableData[action.row + 1][action.cell - 1],
+          tableData[action.row + 1][action.cell],
+          tableData[action.row + 1][action.cell + 1]
+        );
+      }
+      around = around.concat(
+        tableData[action.row][action.cell - 1],
+        tableData[action.row][action.cell + 1]
+      );
+      let count = around.filter((v) =>
+        [CODE.MINE, CODE.FLAG_MINE, CODE.QUESTION_MINE].includes(v)
+      ).length;
+      console.log(around, count);
+      tableData[action.row][action.cell] = count;
       return {
         ...state,
         tableData,
       };
-    case OPEN_CELL:
+    }
+    case CLICK_MINE: {
       console.log("CLICK_MINE");
       const tableData = [...state.tableData];
       tableData[action.row] = [...state.tableData[action.row]];
@@ -96,7 +125,53 @@ const reducer = (state, action) => {
       return {
         ...state,
         tableData,
+        halted: true,
       };
+    }
+    case FLAG_CELL: {
+      console.log("FLAG_CELL");
+      const tableData = [...state.tableData];
+      tableData[action.row] = [...state.tableData[action.row]];
+      if (tableData[action.row][action.cell] === CODE.MINE) {
+        tableData[action.row][action.cell] = CODE.FLAG_MINE;
+      } else {
+        tableData[action.row][action.cell] = CODE.FLAG;
+      }
+      return {
+        ...state,
+        tableData,
+      };
+    }
+    case QUESTION_CELL: {
+      console.log("QUESTION_CELL");
+      const tableData = [...state.tableData];
+      tableData[action.row] = [...state.tableData[action.row]];
+      if (tableData[action.row][action.cell] === CODE.FLAG_MINE) {
+        tableData[action.row][action.cell] = CODE.QUESTION_MINE;
+      } else {
+        tableData[action.row][action.cell] = CODE.QUESTION;
+      }
+      return {
+        ...state,
+        tableData,
+      };
+    }
+    case NORMALIZE_CELL: {
+      console.log("NORMALIZE_CELL");
+      const tableData = [...state.tableData];
+      tableData[action.row] = [...state.tableData[action.row]];
+      if (tableData[action.row][action.cell] === CODE.QUESTION_MINE) {
+        tableData[action.row][action.cell] = CODE.MINE;
+      } else {
+        tableData[action.row][action.cell] = CODE.NORMAL;
+      }
+      return {
+        ...state,
+        tableData,
+      };
+    }
+    default:
+      return state;
   }
 };
 
@@ -107,8 +182,9 @@ const MineSearch = () => {
     () => ({
       tableData: state.tableData,
       dispatch,
+      halted: state.halted,
     }),
-    [state.tableData]
+    [state.tableData, state.halted]
   ); // dispatch는 안바뀌어서 안넣어도됨. 바뀌는 목록에
 
   return (
