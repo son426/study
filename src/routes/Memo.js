@@ -37,7 +37,8 @@ function Memo() {
       </div>
       <button
         onClick={() => {
-          let copy = [...글제목];
+          let co;
+          py = [...글제목];
           copy[0] = "여자 코트 추천";
           set글제목(copy);
         }}
