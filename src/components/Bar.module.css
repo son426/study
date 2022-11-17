@@ -1,0 +1,21 @@
+.wrap {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  background-color: black;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.logo {
+  width: 150px;
+}
+
+.wrap span,
+i {
+  color: white;
+  margin-right: 10px;
+}

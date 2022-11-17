@@ -1,0 +1,9 @@
+.wrapper {
+  position: absolute;
+  top: 150px;
+  /* 포지션은 임시. 그려야되는데 안보여서 */
+}
+
+.movie_list {
+  display: flex;
+}
