@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import MovieDetail from "../components/MovieDetail";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { API_KEY, API_URL } from "../components/MovieList";
-
+import styles from "./MovieInfo.module.css";
+import Main from "./Main";
 const MovieInfo = (props) => {
   const index = useParams();
   const [loading, setLoading] = useState(true);
@@ -15,19 +16,23 @@ const MovieInfo = (props) => {
       await fetch(`${API_URL}popular?api_key=${API_KEY}`)
     ).json();
     const i = parseInt(index["index"]);
-    setMovie(json.results[i]);
+    setMovie(json.results[i]); // setState는 비동기
     setLoading(false);
-    console.log(movie);
   };
 
   useEffect(() => {
     getMovie();
+    console.log(movie);
   }, []);
 
   return (
     <>
-      <h1>MovieInfo Page</h1>
-      {loading || <MovieDetail movie={movie} />}
+      <div className={styles.wrapper}>
+        <Link to="../">
+          <Main className={styles.main} />
+        </Link>
+        {loading || <MovieDetail movie={movie} />}
+      </div>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./MovieList.module.css";
 import Movie from "./Movie";
 
@@ -13,18 +13,20 @@ const MovieList = () => {
       await fetch(`${API_URL}popular?api_key=${API_KEY}`)
     ).json();
     setMovies(json.results);
-    console.log(json.results);
     setLoading(false);
   };
   useEffect(() => {
     getMovies();
   }, []);
+
+  const onClickSliderBtn = useCallback(() => {}, []);
+
   return (
     <div className={styles.wrapper}>
       <header>오늘 대한민국의 TOP 10 영화</header>
       <div className={styles.movie_list}>
         {movies.map((movie, index) => {
-          return <Movie movie={movie} index={index} />;
+          return <Movie movie={movie} index={index} className={styles.movie} />;
         })}
       </div>
     </div>

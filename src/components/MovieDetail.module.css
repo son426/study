@@ -1,0 +1,44 @@
+.wrapper {
+  height: 1000vh;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.container {
+  z-index: 999;
+  position: absolute;
+  top: 50px;
+  width: 50%;
+  background-color: black;
+  color: white;
+}
+
+.container img {
+  width: 100%;
+  height: 500px;
+}
+
+.metabox {
+  padding: 30px 30px;
+}
+
+.metabox_row {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.date,
+.lang,
+.score,
+.popularity {
+  margin-right: 20px;
+}
+
+.summary {
+  font-weight: 100;
+}
