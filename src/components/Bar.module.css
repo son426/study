@@ -6,16 +6,34 @@
   justify-content: space-between;
   position: fixed;
   top: 0;
+  font-size: 15px;
   width: 100%;
   z-index: 998;
 }
 
 .logo {
   width: 150px;
+  margin-left: 50px;
 }
 
 .wrap span,
 i {
   color: white;
   margin-right: 10px;
+}
+
+.text {
+  display: flex;
+  gap: 15px;
+}
+
+.icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.icon {
+  color: white;
 }

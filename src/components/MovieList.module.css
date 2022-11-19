@@ -3,8 +3,6 @@ header {
 }
 
 .wrapper {
-  position: absolute;
-  top: 150px;
   /* 포지션은 임시. 그려야되는데 안보여서 */
   color: white;
   font-size: 25px;

@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import MovieDetail from "../components/MovieDetail";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { API_KEY, API_URL } from "../components/MovieList";
 import styles from "./MovieInfo.module.css";
 import Main from "./Main";
+
 const MovieInfo = (props) => {
   const index = useParams();
   const [loading, setLoading] = useState(true);
   // 로딩을 안해주면, 에러가 뜸. 데이터를 받아오기전에 렌더링부터 하는데, 데이터가 아직 안받아진 상태여서 undefined가 되는거같음
   const [movie, setMovie] = useState();
   console.log(index);
+
+  const navigate = useNavigate();
 
   const getMovie = async () => {
     const json = await (
@@ -20,6 +23,12 @@ const MovieInfo = (props) => {
     setLoading(false);
   };
 
+  const onClickMain = (e) => {
+    if (e.target.className === "MovieDetail_wrapper__kU56Q") {
+      navigate("../");
+    }
+  };
+
   useEffect(() => {
     getMovie();
     console.log(movie);
@@ -27,10 +36,7 @@ const MovieInfo = (props) => {
 
   return (
     <>
-      <div className={styles.wrapper}>
-        <Link to="../">
-          <Main className={styles.main} />
-        </Link>
+      <div className={styles.wrapper} onClick={onClickMain}>
         {loading || <MovieDetail movie={movie} />}
       </div>
     </>
