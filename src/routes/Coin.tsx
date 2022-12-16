@@ -1,4 +1,5 @@
 import { useParams, useLocation } from "react-router";
+import { Helmet } from "react-helmet";
 import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -157,6 +158,12 @@ function Coin() {
 
   return (
     <Container>
+      <Helmet>
+        <title>
+          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+        </title>
+      </Helmet>
+
       <Header>
         {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
       </Header>
@@ -164,6 +171,7 @@ function Coin() {
         <Loader>loading...</Loader>
       ) : (
         <>
+          <Link to="/">홈으로</Link>
           <Overview>
             <OverviewItem>
               <span>RANK</span>
@@ -198,11 +206,11 @@ function Coin() {
             </Tab>
           </Tabs>
           <Switch>
-            <Route path={`/${coinId}/price`}>
+            <Route path={`/:coinId/price`}>
               <Price />
             </Route>
-            <Route path={`/${coinId}/chart`}>
-              <Chart />
+            <Route path={`/:coinId/chart`}>
+              <Chart coinId={coinId} />
             </Route>
           </Switch>
         </>
