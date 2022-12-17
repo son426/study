@@ -22,7 +22,7 @@ const Header = styled.header`
 const CoinsList = styled.ul``;
 const Coin = styled.li`
   background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.textColor};
   margin-bottom: 10px;
   a {
     display: flex;
@@ -50,7 +50,11 @@ interface ICoin {
   type: string;
 }
 
-function Coins() {
+interface ICoins {
+  toggleDark: () => void;
+}
+
+function Coins(props: ICoins) {
   // const [coins, setCoins] = useState<ICoin[]>([]);
   // const [loading, setLoading] = useState(true);
 
@@ -68,7 +72,10 @@ function Coins() {
 
   return (
     <Container>
-      <Header>Coins</Header>
+      <Header>
+        Coins
+        <button onClick={props.toggleDark}>Toggle Dark Mode</button>
+      </Header>
       {isLoading ? (
         <Loader>loading...</Loader>
       ) : (
