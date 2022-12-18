@@ -4,6 +4,8 @@ import { mapQueryStatusFilter } from "react-query/types/core/utils";
 import styled from "styled-components";
 import { fetchCoins } from "./api";
 import { useQuery } from "react-query";
+import { useSetRecoilState } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -50,11 +52,7 @@ interface ICoin {
   type: string;
 }
 
-interface ICoins {
-  toggleDark: () => void;
-}
-
-function Coins(props: ICoins) {
+function Coins() {
   // const [coins, setCoins] = useState<ICoin[]>([]);
   // const [loading, setLoading] = useState(true);
 
@@ -68,13 +66,16 @@ function Coins(props: ICoins) {
   //   })();
   // }, []);
 
+  const setterDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setterDarkAtom((prev) => !prev);
+
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
 
   return (
     <Container>
       <Header>
         Coins
-        <button onClick={props.toggleDark}>Toggle Dark Mode</button>
+        <button onClick={toggleDarkAtom}>toggleMode</button>
       </Header>
       {isLoading ? (
         <Loader>loading...</Loader>
