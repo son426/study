@@ -10,7 +10,7 @@ function CreateToDo() {
   const setToDos = useSetRecoilState(toDoState);
   const { register, handleSubmit, setValue } = useForm<IForm>();
   const handleValid = (data: IForm) => {
-    console.log(data.toDo);
+    // console.log(data.toDo);
     setValue("toDo", "");
     setToDos((oldToDos) => [
       { text: data.toDo, category: "TO_DO", id: Date.now() },
