@@ -11,7 +11,7 @@ export const toDoState = atom<IToDo[]>({
   default: [],
 });
 
-export const categoryState = atom({
+export const categoryState = atom<"TO_DO" | "DOING" | "DONE">({
   key: "category",
   default: "TO_DO",
 });

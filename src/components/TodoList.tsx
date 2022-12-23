@@ -15,12 +15,11 @@ function ToDoList() {
 
   const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
     console.log(e.currentTarget.value);
-    setCategory(e.currentTarget.value);
+    setCategory(e.currentTarget.value as any);
   };
 
   return (
     <div>
-      <h1>To Dos</h1>
       <select value={category} onChange={onChange}>
         <option value="TO_DO">To Do</option>
         <option value="DOING">Doing</option>
