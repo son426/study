@@ -1,3 +1,14 @@
+// import { atom } from "recoil";
+
+// export interface ITodo {
+//   todos: Array;
+// }
+
+// export const toDoState = atom({
+//   key: "toDo",
+//   default: [],
+// });
+
 import { atom, selector } from "recoil";
 
 export interface IToDo {
