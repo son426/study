@@ -1,5 +1,32 @@
+import { useRecoilState } from "recoil";
+import { useForm } from "react-hook-form";
+import { todoState } from "../atoms";
+
+interface IForm {
+  todo: string;
+}
+
 function CreateToDo() {
-  return <></>;
+  const [todos, setTodos] = useRecoilState(todoState);
+  const { register, handleSubmit, setValue } = useForm<IForm>();
+  console.log(todos);
+  const handleValid = (data: IForm) => {
+    setTodos((oldTodos) => [
+      ...oldTodos,
+      { text: data.todo, category: "TO_DO", id: Date.now() },
+    ]);
+    console.log(todos);
+    setValue("todo", "");
+  };
+  return (
+    <form onSubmit={handleSubmit(handleValid)}>
+      <input
+        {...register("todo", { required: "please write todo" })}
+        placeholder="todo"
+      />
+      <button>제출</button>
+    </form>
+  );
 }
 
 export default CreateToDo;
