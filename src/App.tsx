@@ -12,7 +12,7 @@ import Board from "./components/Board";
 
 const Wrapper = styled.div`
   display: flex;
-  max-width: 600px;
+  max-width: 1000px;
   width: 100%;
   margin: 0 auto;
   justify-content: center;
@@ -62,7 +62,7 @@ function App() {
       <Boards>
         <DragDropContext onDragEnd={onDragEnd}>
           {Object.keys(toDos).map((boardId, index) => (
-            <Board boardId={boardId} toDos={toDos[boardId]} />
+            <Board boardId={boardId} toDos={toDos[boardId]} key={index} />
           ))}
         </DragDropContext>
       </Boards>
