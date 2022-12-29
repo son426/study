@@ -1,4 +1,4 @@
-import React from "react";
+import React, { InputHTMLAttributes, useRef } from "react";
 import {
   DragDropContext,
   Draggable,
@@ -7,8 +7,9 @@ import {
 } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { toDoState } from "./atoms";
+import { boardsState, toDoState } from "./atoms";
 import Board from "./components/Board";
+import { useForm } from "react-hook-form";
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,14 +21,22 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 const Boards = styled.div`
-  display: grid;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  /* display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 20px; */
 `;
+
+interface IForm {
+  board: string;
+}
 
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
+
   const onDragEnd = ({ destination, source, draggableId }: DropResult) => {
     if (!destination) return;
     // 같은 보드안에서 움직일때
@@ -57,15 +66,63 @@ function App() {
     }
   };
 
+  // new boards
+
+  // const inputRef = useRef<HTMLInputElement>(null);
+
+  const [boards, setBoards] = useRecoilState(boardsState);
+  const { register, handleSubmit, setValue } = useForm<IForm>();
+
+  const onValid = (data: IForm) => {
+    // setBoards((oldBoards) => [...oldBoards, data.board]);
+    const copyBoard = [...boards, data.board];
+    setBoards(copyBoard);
+    console.log("boards : ", boards);
+    localStorage.setItem("boards", JSON.stringify(copyBoard));
+
+    setToDos((allBoards: any) => {
+      const copyBoard = {
+        ...allBoards,
+        [data.board]: [],
+      };
+      return copyBoard;
+    });
+
+    console.log("boards : ", boards);
+    console.log("todos : ", toDos);
+
+    setValue("board", "");
+    // inputRef.current?.focus();
+  };
+  localStorage.setItem("toDo", JSON.stringify(boards));
+  localStorage.setItem("toDo", JSON.stringify(toDos));
+
   return (
     <Wrapper>
+      <form onSubmit={handleSubmit(onValid)}>
+        <input
+          {...register("board", { required: "board 제목 쓰세요." })}
+          placeholder="board 제목"
+          // ref={inputRef}
+        />
+        <button>보드 만들기</button>
+      </form>
+
       <Boards>
         <DragDropContext onDragEnd={onDragEnd}>
-          {Object.keys(toDos).map((boardId, index) => (
-            <Board boardId={boardId} toDos={toDos[boardId]} key={index} />
+          {boards?.map((board: string, index: number) => (
+            <Board boardId={board} toDos={toDos[board]} key={index} />
           ))}
         </DragDropContext>
       </Boards>
+
+      {/* <Boards>
+        <DragDropContext onDragEnd={onDragEnd}>
+          {Object.keys(toDos)?.map((boardId, index) => (
+            <Board boardId={boardId} toDos={toDos[boardId]} key={index} />
+          ))}
+        </DragDropContext>
+      </Boards> */}
     </Wrapper>
   );
 }

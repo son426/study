@@ -4,12 +4,20 @@ interface ITodoState {
   [key: string]: string[];
 }
 
+interface IBoardsState {
+  boards?: string;
+}
+
+const toDoDefault = JSON.parse(localStorage.getItem("toDo") || "{}");
+
 export const toDoState = atom<ITodoState>({
   key: "toDo",
-  default: {
-    TO_DO: ["a", "b"],
-    DOING: ["c", "d", "e"],
-    DONE: ["f"],
-    BONUS: ["1", "2", "3"],
-  },
+  default: toDoDefault,
+});
+
+const boardsDefault = JSON.parse(localStorage.getItem("boards") || "[]");
+
+export const boardsState = atom<any>({
+  key: "boards",
+  default: boardsDefault,
 });

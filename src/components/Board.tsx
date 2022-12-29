@@ -4,7 +4,7 @@ import { Droppable } from "react-beautiful-dnd";
 import DraggableCard from "./DraggbleCard";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { toDoState } from "../atoms";
 
 const Wrapper = styled.div`
@@ -32,7 +32,7 @@ const Area = styled.div<{ isDraggingOver: boolean }>`
 `;
 
 interface IBoardProps {
-  toDos: string[];
+  toDos?: string[];
   boardId: string;
 }
 
@@ -42,10 +42,10 @@ interface IForm {
 
 function Board({ toDos, boardId }: IBoardProps) {
   const { register, handleSubmit, setValue } = useForm<IForm>();
-  const [toDos1, setToDos1] = useRecoilState(toDoState);
+  const setToDos = useSetRecoilState(toDoState);
   const handleValid = (data: IForm) => {
-    const toDosCopy = [...toDos, data.toDo];
-    setToDos1((allBoards) => {
+    const toDosCopy = [...(toDos as any), data.toDo];
+    setToDos((allBoards) => {
       return {
         ...allBoards,
         [boardId]: toDosCopy,
@@ -71,7 +71,7 @@ function Board({ toDos, boardId }: IBoardProps) {
             ref={magic.innerRef}
             {...magic.droppableProps}
           >
-            {toDos.map((toDo, index) => (
+            {toDos?.map((toDo, index) => (
               <DraggableCard key={toDo} toDo={toDo} index={index} />
             ))}
             {magic.placeholder}
