@@ -4,8 +4,8 @@ import { Droppable } from "react-beautiful-dnd";
 import DraggableCard from "./DraggbleCard";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
-import { useSetRecoilState } from "recoil";
-import { toDoState } from "../atoms";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import { toDoState, boardsState } from "../atoms";
 
 const Wrapper = styled.div`
   background-color: ${(props) => props.theme.boardColor};
@@ -54,6 +54,14 @@ function Board({ toDos, boardId }: IBoardProps) {
     setValue("toDo", "");
   };
 
+  const onClickBoardDelete = () => {
+    setToDos((oldToDos) => {
+      const copyToDos = { ...oldToDos };
+      delete copyToDos[boardId];
+      return copyToDos;
+    });
+  };
+
   return (
     <Wrapper>
       <Title>{boardId}</Title>
@@ -72,12 +80,18 @@ function Board({ toDos, boardId }: IBoardProps) {
             {...magic.droppableProps}
           >
             {toDos?.map((toDo, index) => (
-              <DraggableCard key={toDo} toDo={toDo} index={index} />
+              <DraggableCard
+                key={toDo}
+                toDo={toDo}
+                index={index}
+                boardId={boardId}
+              />
             ))}
             {magic.placeholder}
           </Area>
         )}
       </Droppable>
+      <button onClick={onClickBoardDelete}>삭제버튼</button>
     </Wrapper>
   );
 }

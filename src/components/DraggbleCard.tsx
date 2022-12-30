@@ -1,6 +1,8 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
+import { useSetRecoilState } from "recoil";
+import { toDoState } from "../atoms";
 
 const Card = styled.div<{ isDragging: boolean }>`
   background-color: ${(props) =>
@@ -13,10 +15,22 @@ const Card = styled.div<{ isDragging: boolean }>`
 export interface IDragProps {
   toDo: string;
   index: number;
+  boardId: string;
 }
 
-function DraggableCard({ toDo, index }: IDragProps) {
-  console.log(toDo, "render");
+function DraggableCard({ toDo, index, boardId }: IDragProps) {
+  const setToDos = useSetRecoilState(toDoState);
+
+  const onClickCardDelete = () => {
+    setToDos((oldBoards: any) => {
+      const copyToDos = [...oldBoards[boardId]];
+      copyToDos.splice(index, 1);
+      return {
+        ...oldBoards,
+        [boardId]: copyToDos,
+      };
+    });
+  };
   return (
     <Draggable draggableId={toDo} index={index}>
       {/* key랑 draggbleId랑 무조건 같아야함. beautiful dnd의 사용법 */}
@@ -28,6 +42,7 @@ function DraggableCard({ toDo, index }: IDragProps) {
           {...magic.dragHandleProps}
         >
           {toDo}
+          <button onClick={onClickCardDelete}>삭제</button>
         </Card>
       )}
     </Draggable>

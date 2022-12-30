@@ -70,13 +70,13 @@ function App() {
 
   // const inputRef = useRef<HTMLInputElement>(null);
 
-  const [boards, setBoards] = useRecoilState(boardsState);
+  // const [boards, setBoards] = useRecoilState(boardsState);
+  const boards = Object.keys(toDos);
   const { register, handleSubmit, setValue } = useForm<IForm>();
 
   const onValid = (data: IForm) => {
-    // setBoards((oldBoards) => [...oldBoards, data.board]);
     const copyBoard = [...boards, data.board];
-    setBoards(copyBoard);
+
     console.log("boards : ", boards);
     localStorage.setItem("boards", JSON.stringify(copyBoard));
 
@@ -94,7 +94,7 @@ function App() {
     setValue("board", "");
     // inputRef.current?.focus();
   };
-  localStorage.setItem("toDo", JSON.stringify(boards));
+
   localStorage.setItem("toDo", JSON.stringify(toDos));
 
   return (
