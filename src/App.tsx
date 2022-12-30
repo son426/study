@@ -43,8 +43,9 @@ function App() {
     if (destination.droppableId === source.droppableId) {
       setToDos((allBoards) => {
         const boardCopy = [...allBoards[source.droppableId]];
+        const taskObj = boardCopy[source.index];
         boardCopy.splice(source.index, 1);
-        boardCopy.splice(destination?.index, 0, draggableId);
+        boardCopy.splice(destination?.index, 0, taskObj);
         return {
           ...allBoards,
           [source.droppableId]: boardCopy,
@@ -55,8 +56,9 @@ function App() {
       setToDos((allBoards) => {
         const sourceBoard = [...allBoards[source.droppableId]];
         const destinationBoard = [...allBoards[destination.droppableId]];
+        const taskObj = sourceBoard[source.index];
         sourceBoard.splice(source.index, 1);
-        destinationBoard.splice(destination?.index, 0, draggableId);
+        destinationBoard.splice(destination?.index, 0, taskObj);
         return {
           ...allBoards,
           [source.droppableId]: sourceBoard,
@@ -70,14 +72,15 @@ function App() {
 
   // const inputRef = useRef<HTMLInputElement>(null);
 
-  // const [boards, setBoards] = useRecoilState(boardsState);
-  const boards = Object.keys(toDos);
+  const [boards, setBoards] = useRecoilState(boardsState);
+  // const boards = Object.keys(toDos);
   const { register, handleSubmit, setValue } = useForm<IForm>();
 
   const onValid = (data: IForm) => {
     const copyBoard = [...boards, data.board];
 
     console.log("boards : ", boards);
+    setBoards(copyBoard);
     localStorage.setItem("boards", JSON.stringify(copyBoard));
 
     setToDos((allBoards: any) => {
@@ -111,7 +114,7 @@ function App() {
       <Boards>
         <DragDropContext onDragEnd={onDragEnd}>
           {boards?.map((board: string, index: number) => (
-            <Board boardId={board} toDos={toDos[board]} key={index} />
+            <Board boardName={board} toDos={toDos[board]} key={index} />
           ))}
         </DragDropContext>
       </Boards>

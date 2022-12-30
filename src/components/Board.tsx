@@ -5,11 +5,10 @@ import DraggableCard from "./DraggbleCard";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useSetRecoilState, useRecoilState } from "recoil";
-import { toDoState, boardsState } from "../atoms";
+import { toDoState, ITodo } from "../atoms";
 
 const Wrapper = styled.div`
   background-color: ${(props) => props.theme.boardColor};
-  padding-top: 20px;
   border-radius: 5px 5px;
   min-height: 200px;
   text-align: center;
@@ -17,38 +16,45 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.p`
+const Title = styled.div`
   font-size: 15px;
   font-weight: 600;
+  padding-top: 20px;
   margin-bottom: 10px;
+  position: relative;
 `;
 
 const Area = styled.div<{ isDraggingOver: boolean }>`
   padding: 15px 10px;
   flex-grow: 1;
   background-color: ${(props) =>
-    props.isDraggingOver ? "#b2bec3" : props.theme.boardColor};
+    props.isDraggingOver ? "#3a96fecc" : "transparent"};
   transition: background-color 0.1s ease-in-out;
 `;
 
 interface IBoardProps {
-  toDos?: string[];
-  boardId: string;
+  toDos?: ITodo[];
+  boardName: string;
 }
 
 interface IForm {
   toDo: string;
 }
 
-function Board({ toDos, boardId }: IBoardProps) {
+function Board({ toDos, boardName }: IBoardProps) {
   const { register, handleSubmit, setValue } = useForm<IForm>();
   const setToDos = useSetRecoilState(toDoState);
   const handleValid = (data: IForm) => {
-    const toDosCopy = [...(toDos as any), data.toDo];
+    const newToDo = {
+      id: Date.now(),
+      text: data.toDo,
+    };
+    const toDosCopy = [...(toDos as any), newToDo];
+    console.log(toDosCopy);
     setToDos((allBoards) => {
       return {
         ...allBoards,
-        [boardId]: toDosCopy,
+        [boardName]: toDosCopy,
       };
     });
     setValue("toDo", "");
@@ -57,22 +63,41 @@ function Board({ toDos, boardId }: IBoardProps) {
   const onClickBoardDelete = () => {
     setToDos((oldToDos) => {
       const copyToDos = { ...oldToDos };
-      delete copyToDos[boardId];
+      delete copyToDos[boardName];
       return copyToDos;
     });
   };
 
   return (
     <Wrapper>
-      <Title>{boardId}</Title>
+      <Title>
+        {boardName}
+        <button
+          style={{
+            backgroundColor: "rgba(0,0,0,0.2)",
+            width: "25px",
+            height: "25px",
+            position: "absolute",
+            top: "10px",
+            right: "5px",
+            border: "none",
+            borderRadius: "10px",
+            fontWeight: "600",
+            color: "white",
+          }}
+          onClick={onClickBoardDelete}
+        >
+          X
+        </button>
+      </Title>
+
       <form onSubmit={handleSubmit(handleValid)}>
         <input
-          {...register("toDo", { required: "please write a toDo" })}
-          placeholder="Write a toDo"
+          {...register("toDo", { required: "Add Task" })}
+          placeholder={`Add Task on ${boardName}`}
         />
-        <button>추가</button>
       </form>
-      <Droppable droppableId={boardId}>
+      <Droppable droppableId={boardName}>
         {(magic, snapshot) => (
           <Area
             isDraggingOver={snapshot.isDraggingOver}
@@ -81,17 +106,17 @@ function Board({ toDos, boardId }: IBoardProps) {
           >
             {toDos?.map((toDo, index) => (
               <DraggableCard
-                key={toDo}
-                toDo={toDo}
+                key={toDo.id}
+                toDoId={toDo.id}
+                toDoText={toDo.text}
                 index={index}
-                boardId={boardId}
+                boardName={boardName}
               />
             ))}
             {magic.placeholder}
           </Area>
         )}
       </Droppable>
-      <button onClick={onClickBoardDelete}>삭제버튼</button>
     </Wrapper>
   );
 }
