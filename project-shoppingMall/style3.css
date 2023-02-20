@@ -1,0 +1,16 @@
+img {
+  width: 100%;
+}
+
+.product-list div {
+  margin: 15px;
+}
+
+.product-list {
+  display: flex;
+}
+
+.basket {
+  min-height: 300px;
+  display: flex;
+}
