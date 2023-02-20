@@ -1,0 +1,147 @@
+"use strict";
+class MiriAnalytics {
+    constructor() {
+        this.isInit = false;
+        this.source = '';
+        this.maHost = "https://analytics-develop.miridih.com";
+    }
+    init(source, maHost) {
+        if (this.isInit) {
+            return;
+        }
+        this.source = source;
+        this.maHost = maHost;
+        if (!navigator.sendBeacon) {
+            return;
+        }
+        navigator.sendBeacon = this.makeBeaconProxy();
+        this.isInit = true;
+    }
+    makeBeaconProxy() {
+        const getCoreData = this.getCoreData.bind(this);
+        const sendGenericEvent = this.sendGenericEvent.bind(this);
+        return new Proxy(navigator.sendBeacon, {
+            apply(target, thisArg, argArray) {
+                const url = argArray[0];
+                if (!url.startsWith('https://analytics.google.com')) {
+                    return Reflect.apply(target, thisArg, argArray);
+                }
+                const fullData = (url + (argArray[1] ? ('\n' + argArray[1]) : ''));
+                const genericEvents = fullData.split(/_et|\n/g).filter(event => event.includes('log_type'));
+                for (const event of genericEvents) {
+                    const params = new URLSearchParams(event);
+                    const eventData = {};
+                    for (const entry of params.entries()) {
+                        const key = entry[0];
+                        const isEpn = key.split(/(epn?\.)/)[1] === 'epn.';
+                        const realKeyName = key.split(/(epn?\.)/)[2];
+                        if (!realKeyName || 'log_type' === realKeyName) {
+                            continue;
+                        }
+                        eventData[realKeyName] = isEpn ? Number(entry[1]) : entry[1];
+                    }
+                    const data = {
+                        core: getCoreData(),
+                        data: {
+                            logType: params.get("ep.log_type"),
+                            details: eventData
+                        },
+                    };
+                    sendGenericEvent(data);
+                }
+                return Reflect.apply(target, thisArg, argArray);
+            }
+        });
+    }
+    sendPageView(url) {
+        const data = {
+            core: this.getCoreData(),
+            data: {
+                url: url || location.href,
+                referer: document.referrer,
+                title: document.title
+            }
+        };
+        this.sendData('/track-page-view', data)
+            .then((response) => this.manageSession(response.headers));
+    }
+    sendGenericEvent(data) {
+        try {
+            const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+            navigator.sendBeacon(`${this.maHost}/generic-event`, blob);
+        }
+        catch (e) {
+            console.error(e);
+            navigator.sendBeacon(`${this.maHost}/generic-event`, JSON.stringify(data));
+        }
+        setTimeout(() => {
+            this.manageSession();
+        }, 5000);
+    }
+    getCoreData() {
+        return {
+            source: this.source,
+            url: location.href,
+            referer: document.referrer,
+            agent: {
+                language: navigator.language,
+                userAgent: navigator.userAgent,
+            },
+            display: {
+                browserWidth: window.innerWidth,
+                browserHeight: window.innerHeight,
+                screenWidth: screen.width,
+                screenHeight: screen.height,
+                screenColorDepth: screen.colorDepth
+            }
+        };
+    }
+    sendData(url, data) {
+        return fetch(this.maHost + url, {
+            mode: 'cors',
+            credentials: 'include',
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+            }),
+            body: JSON.stringify(data)
+        });
+    }
+    manageSession(headers) {
+        var _a, _b;
+        if (headers) {
+            this.sessionId = (_a = headers.get('Session-Id')) !== null && _a !== void 0 ? _a : undefined;
+            this.deviceId = (_b = headers.get('Device-Id')) !== null && _b !== void 0 ? _b : undefined;
+            MiriAnalytics.setCookie(MiriAnalytics.SESSION_COOKIE_NAME, this.sessionId);
+            MiriAnalytics.setCookie(MiriAnalytics.DEVICE_COOKIE_NAME, this.deviceId);
+        }
+        if (this.sessionRenewalTimerId) {
+            clearTimeout(this.sessionRenewalTimerId);
+        }
+        this.sessionRenewalTimerId = setTimeout(() => {
+            this.sendRenewalSession();
+            this.sessionRenewalTimerId = undefined;
+            this.manageSession();
+        }, MiriAnalytics.SESSION_TIMEOUT);
+    }
+    static setCookie(cname, cvalue) {
+        const host = location.host;
+        const domain = host.replace(/^([^.]+)/, '');
+        const d = new Date();
+        d.setTime(d.getTime() + MiriAnalytics.SESSION_TIMEOUT);
+        const expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;" + "domain=" + domain + ";";
+    }
+    sendRenewalSession() {
+        const data = {
+            core: this.getCoreData(),
+            data: {}
+        };
+        return this.sendData('/session-renewal', data)
+            .then((response) => this.manageSession(response.headers));
+    }
+}
+MiriAnalytics.SESSION_COOKIE_NAME = 'ma_sid';
+MiriAnalytics.DEVICE_COOKIE_NAME = 'ma_did';
+MiriAnalytics.SESSION_TIMEOUT = 30 * 60 * 1000;
+var ma = (ma && ma instanceof MiriAnalytics) ? ma : new MiriAnalytics();
