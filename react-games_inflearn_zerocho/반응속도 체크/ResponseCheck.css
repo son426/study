@@ -1,0 +1,22 @@
+.waiting,
+.ready,
+.now {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  height: 600px;
+}
+
+.waiting {
+  background-color: aqua;
+}
+
+.ready {
+  background-color: tomato;
+}
+
+.now {
+  background-color: green;
+}
