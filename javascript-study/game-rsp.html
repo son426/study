@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Study</title>
+  </head>
+
+
+    <div class="game-rsp">
+      <span class="rock hide">✊</span>
+      <span class="scissors hide">✌️</span>
+      <span class="paper hide">🖐</span>
+
+      <div>
+        <button class="stop-button scissors-button modal-button">가위</button>
+        <button class="stop-button rock-button modal-button">바위</button>
+        <button class="stop-button paper-button modal-button">보</button>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="modal hide">
+        <div class="modal-row title">
+          <span></span>
+        </div>
+        <div class="modal-row rsp-computer"></div>
+        <div class="modal-row rsp-user"></div>
+        <div class="modal-row buttons">
+          <button id="modal-close">다시하기</button>
+        </div>
+      </div>
+    </div>
+
+    <a href="index.html">홈으로</a>
+
+    <script src="js/modal.js"></script>
+    <script src="js/game1.js"></script>
+  </body>
+</html>
