@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+}
+
+.column {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.column:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.column span {
+  font-size: 150px;
+  color: white;
+}
+
+.column img {
+  height: 100%;
+}

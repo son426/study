@@ -1,0 +1,38 @@
+header {
+  margin-bottom: 20px;
+}
+
+.wrapper {
+  /* 포지션은 임시. 그려야되는데 안보여서 */
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.movie_list {
+  display: flex;
+  position: relative;
+  width: 100vw;
+  /* 이거하면 스크롤 + 갭 설정됨 */
+  gap: 1em;
+  overflow-x: scroll;
+
+  height: 200px;
+}
+
+.movie_list::-webkit-scrollbar {
+  display: none;
+}
+
+.slider_btn_left,
+.slider_btn_right {
+  position: absolute;
+  top: 50%;
+}
+
+.slider_btn_left {
+  left: 5vw;
+}
+.slider_btn_right {
+  left: 95vw;
+}
