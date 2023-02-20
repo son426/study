@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:url(#linear-gradient)}
+        </style>
+        <linearGradient id="linear-gradient" x1=".066" x2=".964" y1=".107" y2=".959" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#82e673"/>
+            <stop offset=".477" stop-color="#2c8"/>
+            <stop offset="1" stop-color="#0cb"/>
+        </linearGradient>
+    </defs>
+    <g id="m_logo" transform="translate(-1960 -1086)">
+        <rect id="사각형_2657" width="40" height="40" class="cls-1" rx="20" transform="translate(1960 1086)"/>
+        <path id="패스_1691" d="M291.155 293.261c0-4.191 2.818-6.74 6.372-6.74a5.32 5.32 0 0 1 4.862 2.479 5.265 5.265 0 0 1 4.828-2.481c3.554 0 6.371 2.548 6.371 6.74v9.12a1.845 1.845 0 1 1-3.689 0v-9.153c0-2.214-1.241-3.287-2.851-3.287-1.575 0-2.816 1.073-2.816 3.287v9.153a1.868 1.868 0 0 1-1.844 1.878 1.846 1.846 0 0 1-1.844-1.878v-9.153c0-2.214-1.275-3.287-2.851-3.287s-2.85 1.073-2.85 3.287v9.153a1.845 1.845 0 1 1-3.689 0z" class="cls-2" transform="translate(1677.845 810.479)"/>
+    </g>
+</svg>
