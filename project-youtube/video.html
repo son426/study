@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/sidebar.css" />
+    <link rel="stylesheet" href="css/video.css" />
+    <script
+      src="https://kit.fontawesome.com/6b2566486d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-row search">
+        <div class="header-column start">
+          <div class="ham-bar"><i class="fas fa-bars fa-lg"></i></div>
+          <div class="home-img">
+            <a href="index.html"
+              ><img
+                src="data:image/png;base64,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"
+            /></a>
+          </div>
+        </div>
+        <div class="header-column center">
+          <div class="search-form-container">
+            <form class="search-form">
+              <div class="search-input-container">
+                <input type="text" placeholder="검색" />
+                <div class="search-icon-container">
+                  <i class="fa-solid fa-keyboard"></i>
+                  <i class="fa-solid fa-xmark"></i>
+                  <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="search-toggle-container hidden">
+            <ul class="search-toggle">
+              <li>1</li>
+            </ul>
+          </div>
+        </div>
+        <div class="header-column end">
+          <i class="fa-solid fa-video fa-lg"></i>
+          <i class="fa-solid fa-bell fa-lg"></i>
+          <i class="fa-solid fa-circle-user fa-lg"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="side-bar stretch hidden">
+      <div class="side-bar-tab stretch">
+        <i class="fas fa-home"></i>
+        <span>홈</span>
+      </div>
+      <div class="side-bar-tab stretch">
+        <i class="fas fa-compass"></i>
+        <span>탐색</span>
+      </div>
+      <div class="side-bar-tab stretch">
+        <i class="fas fa-play-circle"></i>
+        <span>Shorts</span>
+      </div>
+      <div class="side-bar-tab stretch">
+        <i class="fab fa-youtube"></i>
+        <span>구독</span>
+      </div>
+      <div class="side-bar-tab stretch">
+        <i class="fas fa-file-video"></i>
+        <span>보관함</span>
+      </div>
+    </div>
+
+    <main class="main_big">
+      <div class="column">
+        <div class="comment">
+          <div class="comment_header">
+            <span>댓글 0개</span>
+            <i class="fas fa-sort-amount-down"></i>
+            <span>정렬기준</span>
+          </div>
+          <div class="comment_write">
+            <div class="comment_profile"><img src="img/profile2.jpg" /></div>
+            <form>
+              <input
+                type="text"
+                placeholder="공개적으로 댓글을 남길 계정 : ~~"
+              />
+            </form>
+          </div>
+          <div class="comment_list">
+            <ul></ul>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="filter">
+          <button>모두</button>
+          <button>관련 컨텐츠</button>
+          <button>실시간</button>
+          <button>최근에 업로드</button>
+        </div>
+        <ul class="recommend_video">
+          <li>
+            <div class="recommend_video_wrap">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/EP65TL0Ff4c"
+                frameborder="0"
+              ></iframe>
+            </div>
+            <div class="recommend_video_info">
+              <div class="title">미래에 대한 불안감을 이겨내는 방법</div>
+              <div class="channel">멘탈훈련소</div>
+              <div class="view_date">
+                <span>조회수 47만회</span>
+                <span>8개월 전</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <main class="main_small">휴대폰화면</main>
+
+    <script src="js/app.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/zoom.js"></script>
+    <script src="js/video.js"></script>
+    <script src="js/comment.js"></script>
+    <script src="js/thumbs.js"></script>
+    <script src="js/subscribe.js"></script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+/* sidebar */
+
+.side-bar {
+  position: fixed;
+  top: 50px;
+  left: 0px;
+  height: 100vh;
+  width: 50px;
+  padding: 20px;
+  background-color: white;
+  transition: all 1s;
+}
+
+.side-bar-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10px;
+  margin-bottom: 30px;
+}
+
+.side-bar-tab i {
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+/* side-bar stretch */
+
+.side-bar.stretch {
+  width: 150px;
+  transition: all 1s;
+}
+
+.side-bar-tab.stretch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 15px;
+}
+
+.side-bar-tab.stretch i {
+  font-size: 21px;
+  margin-right: 15px;
+  margin-bottom: 0px;
+}
