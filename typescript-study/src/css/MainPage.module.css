@@ -1,0 +1,13 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+  color: tomato;
+}
+
+Button {
+  margin: 50px 0px;
+}
